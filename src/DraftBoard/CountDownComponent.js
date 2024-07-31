@@ -1,8 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { Button, Typography } from "@mui/material";
 
-
-
 function CountDownTimer({
   duration,
   updatePlayerTeam,
