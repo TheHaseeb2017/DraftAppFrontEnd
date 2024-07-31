@@ -1,0 +1,78 @@
+# Node.js dependencies
+node_modules/
+npm-debug.log
+yarn-error.log
+.pnpm-debug.log
+*.log
+
+# Build and deployment artifacts
+build/
+dist/
+tmp/
+temp/
+.DS_Store
+
+# Local environment files
+.env
+.env.local
+.env.*.local
+.env.*.sample
+
+# IDE-specific files
+.vscode/
+.idea/
+*.sublime-project
+*.sublime-workspace
+
+# OS-specific files
+Thumbs.db
+.DS_Store
+*.swp
+*.swo
+
+# Version control directories and files
+.git/
+.gitignore
+.gitattributes
+
+# Miscellaneous
+*.log
+*.pid
+*.seed
+*.key
+
+# Docker-related files (if they are not needed in the final application)
+docker-compose.yml
+docker-compose.override.yml
+.Dockerfile
+
+# Testing-related files and directories
+coverage/
+test/
+__tests__/
+__mocks__/
+jest.config.js
+jest.setup.js
+
+# Build system files
+Makefile
+Gruntfile.js
+Gulpfile.js
+rollup.config.js
+webpack.config.js
+parcel.config.js
+
+# Miscellaneous
+*.iml
+*.hprof
+*.log
+*.sql
+*.sqlite
+*.tgz
+*.tar.gz
+*.lock
+*.envrc
+
+# AWS-related files
+.ebextensions/
+.elasticbeanstalk/

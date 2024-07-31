@@ -1,0 +1,36 @@
+import { TextField, Button, getPaginationItemUtilityClass } from "@mui/material";
+import "../App.css";
+
+import React from "react";
+
+const EnterDraftSettingComponent = ({
+  setDraftCode,
+  validateDraftCode,
+  errorMessage,
+  textFieldStyle,
+  getPlayersWithTeam,
+  draftCode,
+}) => {
+  return (
+    <div className="App-header">
+      <h1> Draft Settings </h1>{" "}
+      <TextField
+        placeholder="Enter draft code here ..."
+        onChange={(event) => setDraftCode(event.target.value)}
+        style={textFieldStyle}
+      />
+      <Button
+        onClick={(event) => {
+          console.log("This is the draftcode : " + draftCode);
+          validateDraftCode(event);
+          getPlayersWithTeam();
+        }}
+      >
+        Submit
+      </Button>
+      <h3>{errorMessage} </h3>
+    </div>
+  );
+};
+
+export default EnterDraftSettingComponent;
