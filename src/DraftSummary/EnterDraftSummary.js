@@ -30,7 +30,7 @@ const EnterDraftSummary = () => {
     };
     try {
       const responce = await fetch(
-        `${process.env.REACT_APP_API_URL}/drafts/validate/${draftCode}`,
+        `http://draftappbackend-env.eba-ahp7vfnp.us-east-1.elasticbeanstalk.com/drafts/validate/${draftCode}`,
         options
       );
 
@@ -58,7 +58,7 @@ const EnterDraftSummary = () => {
     };
     try {
       const responce = await fetch(
-        `${process.env.REACT_APP_API_URL}/drafts/draftpicks/${draftCode}`,
+        `http://draftappbackend-env.eba-ahp7vfnp.us-east-1.elasticbeanstalk.com/drafts/draftpicks/${draftCode}`,
         options
       );
       console.log(responce); // Log the response
@@ -79,7 +79,7 @@ const EnterDraftSummary = () => {
     };
     try {
       const responce = await fetch(
-        `${process.env.REACT_APP_API_URL}/drafts/playerandteam/${draftCode}`,
+        `http://draftappbackend-env.eba-ahp7vfnp.us-east-1.elasticbeanstalk.com/drafts/playerandteam/${draftCode}`,
         options
       );
       console.log(responce); // Log the response

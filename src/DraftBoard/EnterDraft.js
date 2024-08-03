@@ -50,7 +50,7 @@ const EnterDraft = () => {
     };
     try {
       const responce = await fetch(
-        `${process.env.REACT_APP_API_URL}/drafts/validate/${draftCode}`,
+        `http://draftappbackend-env.eba-ahp7vfnp.us-east-1.elasticbeanstalk.com/drafts/validate/${draftCode}`,
         options
       );
 
@@ -82,7 +82,7 @@ const EnterDraft = () => {
     };
     try {
       const responce = await fetch(
-        `${process.env.REACT_APP_API_URL}/player/notdrafted/${draftCode}`,
+        `http://draftappbackend-env.eba-ahp7vfnp.us-east-1.elasticbeanstalk.com/player/notdrafted/${draftCode}`,
         options
       );
       console.log(responce); // Log the response
@@ -135,7 +135,7 @@ const EnterDraft = () => {
 
       try {
         const responce = await fetch(
-          `${process.env.REACT_APP_API_URL}/player/addteam/${PlayerID}`,
+          `http://draftappbackend-env.eba-ahp7vfnp.us-east-1.elasticbeanstalk.com/player/addteam/${PlayerID}`,
           options
         );
         console.log(responce); // Log the response
@@ -175,7 +175,7 @@ const EnterDraft = () => {
       };
       try {
         const responce = await fetch(
-          `${process.env.REACT_APP_API_URL}/draftpicks`,
+          `http://draftappbackend-env.eba-ahp7vfnp.us-east-1.elasticbeanstalk.com/draftpicks`,
           options
         );
         console.log(responce); // Log the response
@@ -199,7 +199,7 @@ const EnterDraft = () => {
     };
     try {
       const responce = await fetch(
-        `${process.env.REACT_APP_API_URL}/drafts/playerandteam/${draftCode}`,
+        `http://draftappbackend-env.eba-ahp7vfnp.us-east-1.elasticbeanstalk.com/drafts/playerandteam/${draftCode}`,
         options
       );
       console.log(responce); // Log the response
@@ -220,7 +220,7 @@ const EnterDraft = () => {
     };
     try {
       const responce = await fetch(
-        `${process.env.REACT_APP_API_URL}/teams/draftorder/${draftCode}`,
+        `http://draftappbackend-env.eba-ahp7vfnp.us-east-1.elasticbeanstalk.com/teams/draftorder/${draftCode}`,
         options
       );
       console.log(responce); // Log the response

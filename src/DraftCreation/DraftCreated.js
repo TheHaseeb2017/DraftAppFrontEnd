@@ -40,7 +40,7 @@ function DraftCreated({ setShowDC, setShowDF }) {
     };
     try {
       const responce = await fetch(
-        `${process.env.REACT_APP_API_URL}/player/notdrafted/${draftCode}`,
+        `http://draftappbackend-env.eba-ahp7vfnp.us-east-1.elasticbeanstalk.com/player/notdrafted/${draftCode}`,
         options
       );
       console.log(responce); // Log the response
@@ -61,7 +61,7 @@ function DraftCreated({ setShowDC, setShowDF }) {
     };
     try {
       const responce = await fetch(
-        `${process.env.REACT_APP_API_URL}/teams/indraft/${draftCode}`,
+        `http://draftappbackend-env.eba-ahp7vfnp.us-east-1.elasticbeanstalk.com/teams/indraft/${draftCode}`,
         options
       );
       console.log(responce); // Log the response
