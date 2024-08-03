@@ -11,7 +11,6 @@ import EnterDraftSetting from "./DraftSettings/EnterDraftSettings"
 import NavBar from "./NavBar";
 import { DraftCodeProvider } from "./DraftCodeContext";
 
-
 function App() {
   const [showDF, setShowDF] = useState(true);
   const [showTF, setShowTF] = useState(false);
