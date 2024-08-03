@@ -41,6 +41,7 @@ function DraftForm({ setShowDF, setShowTF }) {
       isactive: isActive,
       duration: duration,
     };
+
     
 
     const options = {
