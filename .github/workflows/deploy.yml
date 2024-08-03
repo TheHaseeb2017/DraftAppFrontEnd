@@ -3,7 +3,7 @@ name: Deploy to Elastic Beanstalk
 on:
   push:
     branches:
-      - main
+      - main # Change this to your default branch
 
 jobs:
   deploy:
@@ -11,18 +11,17 @@ jobs:
 
     steps:
       - name: Checkout code
-        uses: actions/checkout@v2
+        uses: actions/checkout@v3
+
+      - name: Set up AWS CLI
+        uses: aws-actions/configure-aws-credentials@v1
+        with:
+          aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}
+          aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+          aws-region: ${{ secrets.AWS_REGION }}
 
       - name: Set up Docker Buildx
         uses: docker/setup-buildx-action@v1
-
-      - name: Cache Docker layers
-        uses: actions/cache@v2
-        with:
-          path: /tmp/.buildx-cache
-          key: ${{ runner.os }}-buildx-${{ github.sha }}
-          restore-keys: |
-            ${{ runner.os }}-buildx-
 
       - name: Log in to Amazon ECR
         id: login-ecr
@@ -40,19 +39,39 @@ jobs:
           docker push $ECR_REGISTRY/$ECR_REPOSITORY:$IMAGE_TAG
           echo "::set-output name=image::$ECR_REGISTRY/$ECR_REPOSITORY:$IMAGE_TAG"
 
-      - name: Configure AWS CLI
-        run: |
-          aws configure set aws_access_key_id ${{ secrets.AWS_ACCESS_KEY_ID }}
-          aws configure set aws_secret_access_key ${{ secrets.AWS_SECRET_ACCESS_KEY }}
-          aws configure set default.region us-east-1
-
       - name: Deploy to Elastic Beanstalk
         env:
-          AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
-          AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
           AWS_REGION: ${{ secrets.AWS_REGION }}
-          APP_NAME: ${{ secrets.EB_APPLICATION_NAME }}
-          ENV_NAME: ${{ secrets.EB_ENVIRONMENT_NAME }}
+          EB_APPLICATION_NAME: ${{ secrets.EB_APPLICATION_NAME }}
+          EB_ENVIRONMENT_NAME: ${{ secrets.EB_ENVIRONMENT_NAME }}
           DOCKER_IMAGE: ${{ steps.build.outputs.image }}
         run: |
-          aws elasticbeanstalk update-environment --application-name $APP_NAME --environment-name $ENV_NAME --version-label $IMAGE_TAG
+          # Install AWS Elastic Beanstalk CLI
+          pip install awsebcli --upgrade
+
+          # Initialize Elastic Beanstalk CLI
+          echo $DOCKER_IMAGE
+          echo $AWS_REGION
+          echo $EB_APPLICATION_NAME
+          echo $EB_ENVIRONMENT_NAME
+          eb init -p docker $EB_APPLICATION_NAME --region $AWS_REGION
+
+          # Set the environment to use
+          eb use $EB_ENVIRONMENT_NAME
+
+          # Create Dockerrun.aws.json file
+          echo '{
+            "AWSEBDockerrunVersion": "1",
+            "Image": {
+              "Name": "'$DOCKER_IMAGE'",
+              "Update": "true"
+            },
+            "Ports": [
+              {
+                "ContainerPort": "80"
+              }
+            ]
+          }' > Dockerrun.aws.json
+
+          # Deploy to Elastic Beanstalk
+          eb deploy $EB_ENVIRONMENT_NAME
