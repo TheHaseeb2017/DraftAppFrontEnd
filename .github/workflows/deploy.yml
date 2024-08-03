@@ -17,7 +17,7 @@ jobs:
 
       - name: Generate Deployment Package 
         # zip all files except .git
-        run: zip -r BookAppFrontend.zip * -x "**.git**"
+        run: zip -r DRAFTAPPFRONTEND.zip * -x "**.git**"
 
       - name: Get timestamp
         uses: gerred/actions/current-time@master
@@ -43,7 +43,7 @@ jobs:
           environment_name: "${{ secrets.EB_ENVIROMENT_NAME }}"
           version_label: "app-${{ steps.format-time.outputs.replaced }}"
           region: "${{ secrets.AWS_REGION }}"
-          deployment_package: BookAppFrontend.zip
+          deployment_package: DRAFTAPPFRONTEND.zip
 
       - name: Deployed!
         run: echo App deployed to ELB
