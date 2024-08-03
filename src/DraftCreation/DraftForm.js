@@ -41,6 +41,7 @@ function DraftForm({ setShowDF, setShowTF }) {
       isactive: isActive,
       duration: duration,
     };
+    
 
 
 
@@ -66,7 +67,7 @@ function DraftForm({ setShowDF, setShowTF }) {
       console.log(error);
       console.log('This is the url: ' + `http://draftappbackend-env.eba-ahp7vfnp.us-east-1.elasticbeanstalk.com/drafts`)
     }
-    
+
   }
 
   return (
