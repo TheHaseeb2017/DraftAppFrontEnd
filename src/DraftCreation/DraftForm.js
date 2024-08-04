@@ -65,6 +65,7 @@ function DraftForm({ setShowDF, setShowTF }) {
       console.log(data);
     } catch (error) {
       console.log(error);
+      
       console.log(
         "This is the url: " +
           `DraftAppBackend-env.eba-ycxmbsvk.us-east-1.elasticbeanstalk.com/drafts`
