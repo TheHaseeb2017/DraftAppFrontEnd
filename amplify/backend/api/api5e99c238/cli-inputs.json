@@ -3,7 +3,7 @@
   "paths": {
     "/items": {
       "name": "/items",
-      "lambdaFunction": "draftappfrontend4a4e2b40",
+      "lambdaFunction": "draftapp2c961dc7c",
       "permissions": {
         "setting": "open"
       }

@@ -1,6 +1,6 @@
 {
   "api": {
-    "api6a990c0a": {
+    "api5e99c238": {
       "dependsOn": [
         {
           "attributes": [
@@ -8,7 +8,7 @@
             "Arn"
           ],
           "category": "function",
-          "resourceName": "draftappfrontend4a4e2b40"
+          "resourceName": "draftapp2c961dc7c"
         }
       ],
       "providerPlugin": "awscloudformation",
@@ -16,28 +16,10 @@
     }
   },
   "function": {
-    "draftappfrontend4a4e2b40": {
+    "draftapp2c961dc7c": {
       "build": true,
       "providerPlugin": "awscloudformation",
       "service": "Lambda"
-    }
-  },
-  "parameters": {
-    "AMPLIFY_function_draftappfrontend4a4e2b40_deploymentBucketName": {
-      "usedBy": [
-        {
-          "category": "function",
-          "resourceName": "draftappfrontend4a4e2b40"
-        }
-      ]
-    },
-    "AMPLIFY_function_draftappfrontend4a4e2b40_s3Key": {
-      "usedBy": [
-        {
-          "category": "function",
-          "resourceName": "draftappfrontend4a4e2b40"
-        }
-      ]
     }
   }
 }

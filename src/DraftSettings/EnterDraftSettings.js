@@ -40,7 +40,7 @@ const DraftSettings = () => {
     };
     try {
       const responce = await fetch(
-        `https://laymio70qh.execute-api.us-east-1.amazonaws.com/main/drafts/validate/${draftCode}`,
+        `https://3cawebgrzd.execute-api.us-east-1.amazonaws.com/main/drafts/validate/${draftCode}`,
         options
       );
 
@@ -82,7 +82,7 @@ const DraftSettings = () => {
 
     try {
       const responce = await fetch(
-        `https://laymio70qh.execute-api.us-east-1.amazonaws.com/main/draftsetting/update/${draftCode}`,
+        `https://3cawebgrzd.execute-api.us-east-1.amazonaws.com/main/draftsetting/update/${draftCode}`,
         options
       );
       console.log(responce); // Log the response
@@ -103,7 +103,7 @@ const DraftSettings = () => {
     };
     try {
       const responce = await fetch(
-        `https://laymio70qh.execute-api.us-east-1.amazonaws.com/main/drafts/playerwithteam/${draftCode}`,
+        `https://3cawebgrzd.execute-api.us-east-1.amazonaws.com/main/drafts/playerwithteam/${draftCode}`,
         options
       );
       console.log(responce); // Log the response
@@ -126,7 +126,7 @@ const DraftSettings = () => {
     try {
       console.log("Here is the players ids " + playerids);
       const responce = await fetch(
-        `https://laymio70qh.execute-api.us-east-1.amazonaws.com/main/delete-players`,
+        `https://3cawebgrzd.execute-api.us-east-1.amazonaws.com/main/delete-players`,
         options
       );
       console.log(responce);

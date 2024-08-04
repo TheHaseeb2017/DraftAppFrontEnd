@@ -19,7 +19,7 @@ const io = new Server(server, {
   cors: {
     origin:
       "http://localhost:3001" ||
-      "https://main.dc0fr4ddc4iha.amplifyapp.com/",
+      "https://main.dq8fhy6378yl3.amplifyapp.com",
     methods: ["GET", "POST", "PUT"],
   },
 });
