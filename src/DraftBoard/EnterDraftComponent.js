@@ -15,7 +15,7 @@ const EnterDraftComponent = ({
   const [connected, setConnected] = useState(false);
 
   useEffect(() => {
-    const newSocket = io.connect(`https://0uhiqop80b.execute-api.us-east-1.amazonaws.com/dev/`);
+    const newSocket = io.connect(`https://58e0jre14e.execute-api.us-east-1.amazonaws.com/dev/`);
     setSocket(newSocket);
   }, []);
 

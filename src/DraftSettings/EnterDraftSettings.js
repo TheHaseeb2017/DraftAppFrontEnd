@@ -40,7 +40,7 @@ const DraftSettings = () => {
     };
     try {
       const responce = await fetch(
-        `https://0uhiqop80b.execute-api.us-east-1.amazonaws.com/dev/drafts/validate/${draftCode}`,
+        `https://58e0jre14e.execute-api.us-east-1.amazonaws.com/dev/drafts/validate/${draftCode}`,
         options
       );
 
@@ -82,7 +82,7 @@ const DraftSettings = () => {
 
     try {
       const responce = await fetch(
-        `https://0uhiqop80b.execute-api.us-east-1.amazonaws.com/dev/draftsetting/update/${draftCode}`,
+        `https://58e0jre14e.execute-api.us-east-1.amazonaws.com/dev/draftsetting/update/${draftCode}`,
         options
       );
       console.log(responce); // Log the response
@@ -103,7 +103,7 @@ const DraftSettings = () => {
     };
     try {
       const responce = await fetch(
-        `https://0uhiqop80b.execute-api.us-east-1.amazonaws.com/dev/drafts/playerwithteam/${draftCode}`,
+        `https://58e0jre14e.execute-api.us-east-1.amazonaws.com/dev/drafts/playerwithteam/${draftCode}`,
         options
       );
       console.log(responce); // Log the response
@@ -126,7 +126,7 @@ const DraftSettings = () => {
     try {
       console.log("Here is the players ids " + playerids);
       const responce = await fetch(
-        `https://0uhiqop80b.execute-api.us-east-1.amazonaws.com/dev/delete-players`,
+        `https://58e0jre14e.execute-api.us-east-1.amazonaws.com/dev/delete-players`,
         options
       );
       console.log(responce);
