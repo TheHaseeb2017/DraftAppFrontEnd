@@ -40,7 +40,7 @@ function DraftCreated({ setShowDC, setShowDF }) {
     };
     try {
       const responce = await fetch(
-        `https://3cawebgrzd.execute-api.us-east-1.amazonaws.com/main/player/notdrafted/${draftCode}`,
+        `https://jcwsy5gsg0.execute-api.us-east-1.amazonaws.com/dev/player/notdrafted/${draftCode}`,
         options
       );
       console.log(responce); // Log the response
@@ -61,7 +61,7 @@ function DraftCreated({ setShowDC, setShowDF }) {
     };
     try {
       const responce = await fetch(
-        `https://3cawebgrzd.execute-api.us-east-1.amazonaws.com/main/teams/indraft/${draftCode}`,
+        `https://jcwsy5gsg0.execute-api.us-east-1.amazonaws.com/dev/teams/indraft/${draftCode}`,
         options
       );
       console.log(responce); // Log the response

@@ -52,11 +52,11 @@ function DraftForm({ setShowDF, setShowTF }) {
       body: JSON.stringify(draft),
     };
 
-    
+
 
     try {
       const responce = await fetch(
-        `https://3cawebgrzd.execute-api.us-east-1.amazonaws.com/main/drafts`,
+        `https://jcwsy5gsg0.execute-api.us-east-1.amazonaws.com/dev/drafts`,
         options
       );
       const data = await responce.json();
@@ -72,7 +72,7 @@ function DraftForm({ setShowDF, setShowTF }) {
 
       console.log(
         "This is the url: " +
-          `https://3cawebgrzd.execute-api.us-east-1.amazonaws.com/main/drafts`
+          `https://jcwsy5gsg0.execute-api.us-east-1.amazonaws.com/dev/drafts`
       );
     }
   }
