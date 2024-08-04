@@ -15,7 +15,7 @@
       "function": {
         "draftappfrontend4a4e2b40": {
           "deploymentBucketName": "amplify-draftappfrontend-dev-54966-deployment",
-          "s3Key": "amplify-builds/draftappfrontend4a4e2b40-2b776c38474e6a465952-build.zip"
+          "s3Key": "amplify-builds/draftappfrontend4a4e2b40-4f5a4844336a31524454-build.zip"
         }
       },
       "api": {
