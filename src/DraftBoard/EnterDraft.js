@@ -50,7 +50,7 @@ const EnterDraft = () => {
     };
     try {
       const responce = await fetch(
-        `https://1vzae36dp1.execute-api.us-east-1.amazonaws.com/dev/drafts/validate/${draftCode}`,
+        `https://laymio70qh.execute-api.us-east-1.amazonaws.com/main/drafts/validate/${draftCode}`,
         options
       );
 
@@ -82,7 +82,7 @@ const EnterDraft = () => {
     };
     try {
       const responce = await fetch(
-        `https://1vzae36dp1.execute-api.us-east-1.amazonaws.com/dev/player/notdrafted/${draftCode}`,
+        `https://laymio70qh.execute-api.us-east-1.amazonaws.com/main/player/notdrafted/${draftCode}`,
         options
       );
       console.log(responce); // Log the response
@@ -135,7 +135,7 @@ const EnterDraft = () => {
 
       try {
         const responce = await fetch(
-          `https://1vzae36dp1.execute-api.us-east-1.amazonaws.com/dev/player/addteam/${PlayerID}`,
+          `https://laymio70qh.execute-api.us-east-1.amazonaws.com/main/player/addteam/${PlayerID}`,
           options
         );
         console.log(responce); // Log the response
@@ -175,7 +175,7 @@ const EnterDraft = () => {
       };
       try {
         const responce = await fetch(
-          `https://1vzae36dp1.execute-api.us-east-1.amazonaws.com/dev/draftpicks`,
+          `https://laymio70qh.execute-api.us-east-1.amazonaws.com/main/draftpicks`,
           options
         );
         console.log(responce); // Log the response
@@ -199,7 +199,7 @@ const EnterDraft = () => {
     };
     try {
       const responce = await fetch(
-        `https://1vzae36dp1.execute-api.us-east-1.amazonaws.com/dev/drafts/playerandteam/${draftCode}`,
+        `https://laymio70qh.execute-api.us-east-1.amazonaws.com/main/drafts/playerandteam/${draftCode}`,
         options
       );
       console.log(responce); // Log the response
@@ -220,7 +220,7 @@ const EnterDraft = () => {
     };
     try {
       const responce = await fetch(
-        `https://1vzae36dp1.execute-api.us-east-1.amazonaws.com/dev/teams/draftorder/${draftCode}`,
+        `https://laymio70qh.execute-api.us-east-1.amazonaws.com/main/teams/draftorder/${draftCode}`,
         options
       );
       console.log(responce); // Log the response

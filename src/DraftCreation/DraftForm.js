@@ -41,7 +41,7 @@ function DraftForm({ setShowDF, setShowTF }) {
       isactive: isActive,
       duration: duration,
     };
-    
+
 
     const options = {
       method: "POST",
@@ -53,7 +53,7 @@ function DraftForm({ setShowDF, setShowTF }) {
     };
     try {
       const responce = await fetch(
-        `https://1vzae36dp1.execute-api.us-east-1.amazonaws.com/dev/drafts`,
+        `https://laymio70qh.execute-api.us-east-1.amazonaws.com/main/drafts`,
         options
       );
       const data = await responce.json();
@@ -69,7 +69,7 @@ function DraftForm({ setShowDF, setShowTF }) {
 
       console.log(
         "This is the url: " +
-          `https://1vzae36dp1.execute-api.us-east-1.amazonaws.com/dev/drafts`
+          `https://laymio70qh.execute-api.us-east-1.amazonaws.com/main/drafts`
       );
     }
   }

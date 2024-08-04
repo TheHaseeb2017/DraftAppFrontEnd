@@ -30,7 +30,7 @@ const EnterDraftSummary = () => {
     };
     try {
       const responce = await fetch(
-        `https://1vzae36dp1.execute-api.us-east-1.amazonaws.com/dev/drafts/validate/${draftCode}`,
+        `https://laymio70qh.execute-api.us-east-1.amazonaws.com/main/drafts/validate/${draftCode}`,
         options
       );
 
@@ -58,7 +58,7 @@ const EnterDraftSummary = () => {
     };
     try {
       const responce = await fetch(
-        `https://1vzae36dp1.execute-api.us-east-1.amazonaws.com/dev/drafts/draftpicks/${draftCode}`,
+        `https://laymio70qh.execute-api.us-east-1.amazonaws.com/main/drafts/draftpicks/${draftCode}`,
         options
       );
       console.log(responce); // Log the response
@@ -79,7 +79,7 @@ const EnterDraftSummary = () => {
     };
     try {
       const responce = await fetch(
-        `https://1vzae36dp1.execute-api.us-east-1.amazonaws.com/dev/drafts/playerandteam/${draftCode}`,
+        `https://laymio70qh.execute-api.us-east-1.amazonaws.com/main/drafts/playerandteam/${draftCode}`,
         options
       );
       console.log(responce); // Log the response
