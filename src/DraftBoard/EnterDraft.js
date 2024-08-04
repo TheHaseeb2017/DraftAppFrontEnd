@@ -50,7 +50,7 @@ const EnterDraft = () => {
     };
     try {
       const responce = await fetch(
-        `DraftAppBackend-env.eba-ycxmbsvk.us-east-1.elasticbeanstalk.com/drafts/validate/${draftCode}`,
+        `http://DraftAppBackend-env.eba-ycxmbsvk.us-east-1.elasticbeanstalk.com/drafts/validate/${draftCode}`,
         options
       );
 
@@ -82,7 +82,7 @@ const EnterDraft = () => {
     };
     try {
       const responce = await fetch(
-        `DraftAppBackend-env.eba-ycxmbsvk.us-east-1.elasticbeanstalk.com/player/notdrafted/${draftCode}`,
+        `http://DraftAppBackend-env.eba-ycxmbsvk.us-east-1.elasticbeanstalk.com/player/notdrafted/${draftCode}`,
         options
       );
       console.log(responce); // Log the response
@@ -135,7 +135,7 @@ const EnterDraft = () => {
 
       try {
         const responce = await fetch(
-          `DraftAppBackend-env.eba-ycxmbsvk.us-east-1.elasticbeanstalk.com/player/addteam/${PlayerID}`,
+          `http://DraftAppBackend-env.eba-ycxmbsvk.us-east-1.elasticbeanstalk.com/player/addteam/${PlayerID}`,
           options
         );
         console.log(responce); // Log the response
@@ -175,7 +175,7 @@ const EnterDraft = () => {
       };
       try {
         const responce = await fetch(
-          `DraftAppBackend-env.eba-ycxmbsvk.us-east-1.elasticbeanstalk.com/draftpicks`,
+          `http://DraftAppBackend-env.eba-ycxmbsvk.us-east-1.elasticbeanstalk.com/draftpicks`,
           options
         );
         console.log(responce); // Log the response
@@ -199,7 +199,7 @@ const EnterDraft = () => {
     };
     try {
       const responce = await fetch(
-        `DraftAppBackend-env.eba-ycxmbsvk.us-east-1.elasticbeanstalk.com/drafts/playerandteam/${draftCode}`,
+        `http://DraftAppBackend-env.eba-ycxmbsvk.us-east-1.elasticbeanstalk.com/drafts/playerandteam/${draftCode}`,
         options
       );
       console.log(responce); // Log the response
@@ -220,7 +220,7 @@ const EnterDraft = () => {
     };
     try {
       const responce = await fetch(
-        `DraftAppBackend-env.eba-ycxmbsvk.us-east-1.elasticbeanstalk.com/teams/draftorder/${draftCode}`,
+        `http://DraftAppBackend-env.eba-ycxmbsvk.us-east-1.elasticbeanstalk.com/teams/draftorder/${draftCode}`,
         options
       );
       console.log(responce); // Log the response
