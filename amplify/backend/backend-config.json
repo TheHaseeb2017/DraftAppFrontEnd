@@ -1,6 +1,6 @@
 {
   "api": {
-    "api51d54d1b": {
+    "api6a990c0a": {
       "dependsOn": [
         {
           "attributes": [
@@ -8,7 +8,7 @@
             "Arn"
           ],
           "category": "function",
-          "resourceName": "draftappfrontendc3019ddc"
+          "resourceName": "draftappfrontend4a4e2b40"
         }
       ],
       "providerPlugin": "awscloudformation",
@@ -16,26 +16,26 @@
     }
   },
   "function": {
-    "draftappfrontendc3019ddc": {
+    "draftappfrontend4a4e2b40": {
       "build": true,
       "providerPlugin": "awscloudformation",
       "service": "Lambda"
     }
   },
   "parameters": {
-    "AMPLIFY_function_draftappfrontendc3019ddc_deploymentBucketName": {
+    "AMPLIFY_function_draftappfrontend4a4e2b40_deploymentBucketName": {
       "usedBy": [
         {
           "category": "function",
-          "resourceName": "draftappfrontendc3019ddc"
+          "resourceName": "draftappfrontend4a4e2b40"
         }
       ]
     },
-    "AMPLIFY_function_draftappfrontendc3019ddc_s3Key": {
+    "AMPLIFY_function_draftappfrontend4a4e2b40_s3Key": {
       "usedBy": [
         {
           "category": "function",
-          "resourceName": "draftappfrontendc3019ddc"
+          "resourceName": "draftappfrontend4a4e2b40"
         }
       ]
     }

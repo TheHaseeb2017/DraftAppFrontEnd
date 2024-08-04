@@ -47,12 +47,12 @@
         "FunctionName": {
           "Fn::If": [
             "ShouldNotCreateEnvResources",
-            "draftappfrontendc3019ddc",
+            "draftappfrontend4a4e2b40",
             {
               "Fn::Join": [
                 "",
                 [
-                  "draftappfrontendc3019ddc",
+                  "draftappfrontend4a4e2b40",
                   "-",
                   {
                     "Ref": "env"
@@ -89,12 +89,12 @@
         "RoleName": {
           "Fn::If": [
             "ShouldNotCreateEnvResources",
-            "draftappfrontendLambdaRolefd4fbf73",
+            "draftappfrontendLambdaRole67ede811",
             {
               "Fn::Join": [
                 "",
                 [
-                  "draftappfrontendLambdaRolefd4fbf73",
+                  "draftappfrontendLambdaRole67ede811",
                   "-",
                   {
                     "Ref": "env"
