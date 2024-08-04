@@ -1,0 +1,12 @@
+{
+  "version": 1,
+  "paths": {
+    "/items": {
+      "name": "/items",
+      "lambdaFunction": "draftappfrontend4a4e2b40",
+      "permissions": {
+        "setting": "open"
+      }
+    }
+  }
+}
