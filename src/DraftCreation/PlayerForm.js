@@ -45,7 +45,7 @@ function PlayerForm({ setShowPF, setShowDC }) {
       body: JSON.stringify(team),
     };
     try {
-      const responce = await fetch(`https://jcwsy5gsg0.execute-api.us-east-1.amazonaws.com/dev/play`, options);
+      const responce = await fetch(`https://6yzmh6g610.execute-api.us-east-1.amazonaws.com/dev/play`, options);
       console.log(responce); // Log the response
       const data = await responce.json();
 
