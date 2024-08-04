@@ -41,9 +41,6 @@ function DraftForm({ setShowDF, setShowTF }) {
       isactive: isActive,
       duration: duration,
     };
-    
-
-
 
     const options = {
       method: "POST",
@@ -54,7 +51,10 @@ function DraftForm({ setShowDF, setShowTF }) {
       body: JSON.stringify(draft),
     };
     try {
-      const responce = await fetch(`http://draftappbackend-env.eba-ahp7vfnp.us-east-1.elasticbeanstalk.com/drafts`, options);
+      const responce = await fetch(
+        `DraftAppBackend-env.eba-ycxmbsvk.us-east-1.elasticbeanstalk.com/drafts`,
+        options
+      );
       const data = await responce.json();
       setDraftName("");
       setDraftDate("");
@@ -65,9 +65,11 @@ function DraftForm({ setShowDF, setShowTF }) {
       console.log(data);
     } catch (error) {
       console.log(error);
-      console.log('This is the url: ' + `http://draftappbackend-env.eba-ahp7vfnp.us-east-1.elasticbeanstalk.com/drafts`)
+      console.log(
+        "This is the url: " +
+          `DraftAppBackend-env.eba-ycxmbsvk.us-east-1.elasticbeanstalk.com/drafts`
+      );
     }
-
   }
 
   return (

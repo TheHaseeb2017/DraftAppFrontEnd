@@ -15,7 +15,7 @@ const EnterDraftComponent = ({
   const [connected, setConnected] = useState(false);
 
   useEffect(() => {
-    const newSocket = io.connect(`http://draftappbackend-env.eba-ahp7vfnp.us-east-1.elasticbeanstalk.com/`);
+    const newSocket = io.connect(`DraftAppBackend-env.eba-ycxmbsvk.us-east-1.elasticbeanstalk.com/`);
     setSocket(newSocket);
   }, []);
 

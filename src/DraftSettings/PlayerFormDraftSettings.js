@@ -51,7 +51,7 @@ function PlayerFormDraftSettings({ draftCode, getPlayersWithTeam }) {
     };
     try {
       const responce = await fetch(
-        `http://draftappbackend-env.eba-ahp7vfnp.us-east-1.elasticbeanstalk.com/play`,
+        `DraftAppBackend-env.eba-ycxmbsvk.us-east-1.elasticbeanstalk.com/play`,
         options
       );
       console.log(responce); // Log the response
