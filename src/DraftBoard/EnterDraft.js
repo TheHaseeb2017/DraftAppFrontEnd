@@ -50,7 +50,7 @@ const EnterDraft = () => {
     };
     try {
       const responce = await fetch(
-        `http://DraftAppBackend-env.eba-ycxmbsvk.us-east-1.elasticbeanstalk.com/drafts/validate/${draftCode}`,
+        `https://0uhiqop80b.execute-api.us-east-1.amazonaws.com/dev/drafts/validate/${draftCode}`,
         options
       );
 
@@ -82,7 +82,7 @@ const EnterDraft = () => {
     };
     try {
       const responce = await fetch(
-        `http://DraftAppBackend-env.eba-ycxmbsvk.us-east-1.elasticbeanstalk.com/player/notdrafted/${draftCode}`,
+        `https://0uhiqop80b.execute-api.us-east-1.amazonaws.com/dev/player/notdrafted/${draftCode}`,
         options
       );
       console.log(responce); // Log the response
@@ -135,7 +135,7 @@ const EnterDraft = () => {
 
       try {
         const responce = await fetch(
-          `http://DraftAppBackend-env.eba-ycxmbsvk.us-east-1.elasticbeanstalk.com/player/addteam/${PlayerID}`,
+          `https://0uhiqop80b.execute-api.us-east-1.amazonaws.com/dev/player/addteam/${PlayerID}`,
           options
         );
         console.log(responce); // Log the response
@@ -175,7 +175,7 @@ const EnterDraft = () => {
       };
       try {
         const responce = await fetch(
-          `http://DraftAppBackend-env.eba-ycxmbsvk.us-east-1.elasticbeanstalk.com/draftpicks`,
+          `https://0uhiqop80b.execute-api.us-east-1.amazonaws.com/dev/draftpicks`,
           options
         );
         console.log(responce); // Log the response
@@ -199,7 +199,7 @@ const EnterDraft = () => {
     };
     try {
       const responce = await fetch(
-        `http://DraftAppBackend-env.eba-ycxmbsvk.us-east-1.elasticbeanstalk.com/drafts/playerandteam/${draftCode}`,
+        `https://0uhiqop80b.execute-api.us-east-1.amazonaws.com/dev/drafts/playerandteam/${draftCode}`,
         options
       );
       console.log(responce); // Log the response
@@ -220,7 +220,7 @@ const EnterDraft = () => {
     };
     try {
       const responce = await fetch(
-        `http://DraftAppBackend-env.eba-ycxmbsvk.us-east-1.elasticbeanstalk.com/teams/draftorder/${draftCode}`,
+        `https://0uhiqop80b.execute-api.us-east-1.amazonaws.com/dev/teams/draftorder/${draftCode}`,
         options
       );
       console.log(responce); // Log the response

@@ -52,7 +52,7 @@ function DraftForm({ setShowDF, setShowTF }) {
     };
     try {
       const responce = await fetch(
-        `http://DraftAppBackend-env.eba-ycxmbsvk.us-east-1.elasticbeanstalk.com/drafts`,
+        `https://0uhiqop80b.execute-api.us-east-1.amazonaws.com/dev/drafts`,
         options
       );
       const data = await responce.json();
@@ -68,7 +68,7 @@ function DraftForm({ setShowDF, setShowTF }) {
 
       console.log(
         "This is the url: " +
-          `http://DraftAppBackend-env.eba-ycxmbsvk.us-east-1.elasticbeanstalk.com/drafts`
+          `https://0uhiqop80b.execute-api.us-east-1.amazonaws.com/dev/drafts`
       );
     }
   }
