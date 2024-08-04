@@ -52,6 +52,7 @@ function DraftForm({ setShowDF, setShowTF }) {
       body: JSON.stringify(draft),
     };
     
+
     try {
       const responce = await fetch(
         `https://laymio70qh.execute-api.us-east-1.amazonaws.com/main/drafts`,
