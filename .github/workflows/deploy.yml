@@ -31,4 +31,4 @@ jobs:
           deployment_package: DRAFTAPPFRONTEND.zip
 
       - name: Deployed!
-        run: echo App deployed to ELB
+        run: echo App deployed to EL
