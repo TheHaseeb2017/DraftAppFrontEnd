@@ -27,7 +27,6 @@ jobs:
           application_name: "${{ secrets.EB_APPLICATION_NAME }}"
           environment_name: "${{ secrets.EB_ENVIRONMENT_NAME }}"
           version_label: ${{ github.sha }}
-          existing_bucket_name: elasticbeanstalk-us-east-1-590184144635
           region: us-east-2
           deployment_package: DRAFTAPPFRONTEND.zip
 
