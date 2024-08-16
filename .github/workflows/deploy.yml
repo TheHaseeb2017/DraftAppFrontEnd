@@ -1,34 +1,35 @@
 name: Deploy Draft App to AWS EBS
 on:
-  # Activates the workflow when there is a push on the main branch
+  # activates the workflow when there is a push on the main branch
   push:
     branches:
       - main
 jobs:
   deploy:
-    runs-on: ubuntu-latest # The OS your job should run on
+    runs-on: ubuntu-latest # the OS your job should run on
 
     steps:
       - name: Checkout Latest Repo
-        # Checks out your repository under the GitHub workspace so that your workflow can access it
+        # checks out your repository under the GitHub workspace so that your workflow can access it
         uses: actions/checkout@v2
 
       - name: Generate Deployment Package 
-        # Zip all files except .git
+        # zip all files except .git
         run: zip -r DRAFTAPPFRONTEND.zip * -x "**.git**"
-      
-    
+        
+
+
       - name: Deploy to EB
         uses: einaregilsson/beanstalk-deploy@v21
         with:
-          # Input the credentials you used to set up AWS CLI and credentials for the application environment
+         #  input the credentials you used to setup AWS CLI and credentials for the application environment
           aws_access_key: "${{ secrets.AWS_ACCESS_KEY_ID }}"
           aws_secret_key: "${{ secrets.AWS_SECRET_ACCESS_KEY }}"
           application_name: "${{ secrets.EB_APPLICATION_NAME }}"
           environment_name: "${{ secrets.EB_ENVIRONMENT_NAME }}"
           version_label: ${{ github.sha }}
           region: us-east-1
-          s3_key: DRAFTAPPFRONTEND.zip
+          deployment_package: DRAFTAPPFRONTEND.zip
 
       - name: Deployed!
-        run: echo App deployed to ELB
+        run: echo App deployed to EL
