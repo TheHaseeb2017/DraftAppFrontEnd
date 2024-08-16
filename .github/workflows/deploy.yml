@@ -16,11 +16,8 @@ jobs:
       - name: Generate Deployment Package 
         # Zip all files except .git
         run: zip -r DRAFTAPPFRONTEND.zip * -x "**.git**"
-        
-      - name: Upload to S3
-        # Upload the deployment package to your specified S3 bucket
-        run: aws s3 cp DRAFTAPPFRONTEND.zip s3://${{ secrets.S3_BUCKET_NAME }}
-
+      
+    
       - name: Deploy to EB
         uses: einaregilsson/beanstalk-deploy@v21
         with:
@@ -31,7 +28,6 @@ jobs:
           environment_name: "${{ secrets.EB_ENVIRONMENT_NAME }}"
           version_label: ${{ github.sha }}
           region: us-east-1
-          s3_bucket: ${{ secrets.S3_BUCKET_NAME }}
           s3_key: DRAFTAPPFRONTEND.zip
 
       - name: Deployed!
