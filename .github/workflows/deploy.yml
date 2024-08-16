@@ -16,6 +16,7 @@ jobs:
       - name: Generate Deployment Package 
         # zip all files except .git
         run: zip -r DRAFTAPPFRONTEND.zip * -x "**.git**"
+        
 
 
       - name: Deploy to EB
