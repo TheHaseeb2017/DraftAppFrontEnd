@@ -45,7 +45,7 @@ function PlayerForm({ setShowPF, setShowDC }) {
       body: JSON.stringify(team),
     };
     try {
-      const responce = await fetch(`http://draft-app-backend-env.eba-3wrxffmf.us-east-1.elasticbeanstalk.com/play`, options);
+      const responce = await fetch(`http://localhost:8080/play`, options);
       console.log(responce); // Log the response
       const data = await responce.json();
 

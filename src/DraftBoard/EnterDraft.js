@@ -11,6 +11,7 @@ import { Socket } from "socket.io-client";
 
 const EnterDraft = () => {
   const [draftCode, setDraftCode] = useState("");
+  const [teamCode, setTeamCode] = useState("");
   const [timer, setTimer] = useState(null);
   const [connectedUsers, setConnectedUsers] = useState([]);
   const [players, setPlayers] = useState([]);
@@ -40,7 +41,7 @@ const EnterDraft = () => {
     getTeams();
   }, [draftCode]);
 
-  async function validateDraftCode(event) {
+  async function validateTeamCode(event) {
     const options = {
       method: "GET",
       headers: {
@@ -50,7 +51,40 @@ const EnterDraft = () => {
     };
     try {
       const responce = await fetch(
-        `http://draft-app-backend-env.eba-3wrxffmf.us-east-1.elasticbeanstalk.com/drafts/validate/${draftCode}`,
+        `http://localhost:8080/teams/validate/${teamCode}`,
+        options
+      );
+
+      console.log('Tis team code ' + teamCode); // Log the response
+      const data = await responce.json();
+     
+      setErrorMessage("");
+      const draftcodeco = data[0].draftcode; 
+      setDraftCode(draftcodeco); 
+    getDraft()
+
+    } catch (error) {
+      console.log(error);
+      setErrorMessage(
+        `The team code you entered does not exist: ${teamCode} please try again!!!`
+      );
+      setShowDraft(false);
+    }
+  }
+
+  async function getDraft() {
+
+    console.log ("Draftcode " + draftCode)
+    const options = {
+      method: "GET",
+      headers: {
+        Accept: "application/json",
+        "Content-Type": "application/json",
+      },
+    };
+    try {
+      const responce = await fetch(
+        `http://localhost:8080/drafts/validate/${draftCode}`,
         options
       );
 
@@ -61,16 +95,15 @@ const EnterDraft = () => {
       setTimer(data[0].duration);
       setShowDraft(true);
 
-      getPlayers(event);
-      getTeams(event);
+      getPlayers(draftCode);
+      getTeams(draftCode);
     } catch (error) {
       console.log(error);
-      setErrorMessage(
-        `The draft code you entered does not exist: ${draftCode} please try again!!!`
-      );
       setShowDraft(false);
     }
   }
+
+  
 
   async function getPlayers() {
     const options = {
@@ -82,7 +115,7 @@ const EnterDraft = () => {
     };
     try {
       const responce = await fetch(
-        `http://draft-app-backend-env.eba-3wrxffmf.us-east-1.elasticbeanstalk.com/player/notdrafted/${draftCode}`,
+        `http://localhost:8080/player/notdrafted/${draftCode}`,
         options
       );
       console.log(responce); // Log the response
@@ -111,6 +144,55 @@ const EnterDraft = () => {
       socket.emit("updateIndex", emittedIndex);
     }
   }
+
+  async function updateCanDraft () {
+
+    let localIndex = index + 1; 
+
+    if (localIndex == teams.length) {
+      localIndex = 0; 
+    }
+    
+    console.log("This is the index: " + localIndex); 
+
+    if (players.length !== 0) {
+      console.log(
+        "This is the index " +
+          localIndex +
+          " This the length of teams " +
+          teams.length + 
+          " This is the first team " + teams[0].teamname
+      );
+
+      const teamcode = teams[localIndex].teamcode; 
+
+      const options = {
+        method: "PUT",
+        headers: {
+          Accept: "application/json",
+          "Content-Type": "application/json",
+        }
+      };
+
+      try {
+        const responce = await fetch(
+          `http://localhost:8080/candraft/update/${teamcode}`,
+          options
+        );
+        console.log(responce); // Log the response
+        const data = await responce.json();
+        console.log(data);
+      } catch (error) {
+        console.log(error);
+      }
+
+ 
+    } else {
+      console.log("The Draft is over no more players to be drated");
+    }
+  
+
+  }
   async function updatePlayerTeam(PlayerID) {
     if (players.length !== 0) {
       console.log(
@@ -135,7 +217,7 @@ const EnterDraft = () => {
 
       try {
         const responce = await fetch(
-          `http://draft-app-backend-env.eba-3wrxffmf.us-east-1.elasticbeanstalk.com/player/addteam/${PlayerID}`,
+          `http://localhost:8080/player/addteam/${PlayerID}`,
           options
         );
         console.log(responce); // Log the response
@@ -175,7 +257,7 @@ const EnterDraft = () => {
       };
       try {
         const responce = await fetch(
-          `http://draft-app-backend-env.eba-3wrxffmf.us-east-1.elasticbeanstalk.com/draftpicks`,
+          `http://localhost:8080/draftpicks`,
           options
         );
         console.log(responce); // Log the response
@@ -199,7 +281,7 @@ const EnterDraft = () => {
     };
     try {
       const responce = await fetch(
-        `http://draft-app-backend-env.eba-3wrxffmf.us-east-1.elasticbeanstalk.com/drafts/playerandteam/${draftCode}`,
+        `http://localhost:8080/drafts/playerandteam/${draftCode}`,
         options
       );
       console.log(responce); // Log the response
@@ -220,11 +302,12 @@ const EnterDraft = () => {
     };
     try {
       const responce = await fetch(
-        `http://draft-app-backend-env.eba-3wrxffmf.us-east-1.elasticbeanstalk.com/teams/draftorder/${draftCode}`,
+        `http://localhost:8080/teams/draftorder/${draftCode}`,
         options
       );
-      console.log(responce); // Log the response
+      console.log("Team response " + responce); // Log the response
       const data = await responce.json();
+      
       setTeams(data);
       setTeamID(data.map((team) => team.teamid));
     } catch (error) {
@@ -238,8 +321,10 @@ const EnterDraft = () => {
         <EnterDraftComponent
           draftCode={draftCode}
           setDraftCode={setDraftCode}
+          teamCode={teamCode}
+          setTeamCode={setTeamCode}
           textFieldStyle={textFieldStyle}
-          validateDraftCode={validateDraftCode}
+          validateTeamCode={validateTeamCode}
           errorMessage={errorMessage}
           setSocket={setSocket}
           socket={socket}
@@ -330,6 +415,7 @@ const EnterDraft = () => {
                   teams={teams}
                   setTeams={setTeams}
                   setIndex={setIndex}
+                  updateCanDraft={updateCanDraft}
                 />
               </Box>
             )}

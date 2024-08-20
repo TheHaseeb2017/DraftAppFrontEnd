@@ -40,7 +40,7 @@ function DraftCreated({ setShowDC, setShowDF }) {
     };
     try {
       const responce = await fetch(
-        `http://draft-app-backend-env.eba-3wrxffmf.us-east-1.elasticbeanstalk.com/player/notdrafted/${draftCode}`,
+        `http://localhost:8080/player/notdrafted/${draftCode}`,
         options
       );
       console.log(responce); // Log the response
@@ -61,7 +61,7 @@ function DraftCreated({ setShowDC, setShowDF }) {
     };
     try {
       const responce = await fetch(
-        `http://draft-app-backend-env.eba-3wrxffmf.us-east-1.elasticbeanstalk.com/teams/indraft/${draftCode}`,
+        `http://localhost:8080/teams/indraft/${draftCode}`,
         options
       );
       console.log(responce); // Log the response
@@ -93,12 +93,29 @@ function DraftCreated({ setShowDC, setShowDF }) {
       headerName: "Team Name",
       width: "200",
       cellClassName: "Data-grid-cell",
+
     },
+
+    {
+      field: "teamcode",
+      headerName: "Team Code",
+      width: "200",
+      cellClassName: "Data-grid-cell",
+    },
+
+    {
+      field: "draftorder",
+      headerName: "Draft Order",
+      width: "200",
+      cellClassName: "Data-grid-cell",
+    }
   ];
 
   const teamsrows = teams.map((team) => ({
     id: team.teamid,
     teamname: team.teamname,
+    teamcode: team.teamcode,
+    draftorder: team.draftorder
   }));
 
   return (

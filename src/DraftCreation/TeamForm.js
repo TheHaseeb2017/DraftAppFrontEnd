@@ -55,7 +55,7 @@ function TeamForm({ setShowTF, setShowPF }) {
       body: JSON.stringify(team),
     };
     try {
-      const responce = await fetch(`http://draft-app-backend-env.eba-3wrxffmf.us-east-1.elasticbeanstalk.com/teams`, options);
+      const responce = await fetch(`http://localhost:8080/teams`, options);
       console.log(responce); // Log the response
       const data = await responce.json();
       console.log(data);

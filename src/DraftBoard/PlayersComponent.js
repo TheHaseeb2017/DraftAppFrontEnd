@@ -14,6 +14,7 @@ const PlayersComponent = ({
   socket,
   setTeams,
   setIndex,
+  updateCanDraft
 }) => {
   const style = {
     table: {
@@ -57,10 +58,12 @@ const PlayersComponent = ({
   }));
 
   const handlePlayerClick = async (playerId) => {
+     
     await updatePlayerTeam(playerId);
     await addPickedPlayer(playerId);
     await getPlayers();
     await getDraftedPlayers();
+    await updateCanDraft(); 
     const pickNumber = pick + 1;
     setPick(pickNumber);
     await socket.emit("updatePlayers");

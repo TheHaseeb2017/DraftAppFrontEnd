@@ -40,7 +40,7 @@ const DraftSettings = () => {
     };
     try {
       const responce = await fetch(
-        `http://draft-app-backend-env.eba-3wrxffmf.us-east-1.elasticbeanstalk.com/drafts/validate/${draftCode}`,
+        `http://localhost:8080/drafts/validate/${draftCode}`,
         options
       );
 
@@ -82,7 +82,7 @@ const DraftSettings = () => {
 
     try {
       const responce = await fetch(
-        `http://draft-app-backend-env.eba-3wrxffmf.us-east-1.elasticbeanstalk.com/draftsetting/update/${draftCode}`,
+        `http://localhost:8080/draftsetting/update/${draftCode}`,
         options
       );
       console.log(responce); // Log the response
@@ -103,7 +103,7 @@ const DraftSettings = () => {
     };
     try {
       const responce = await fetch(
-        `http://draft-app-backend-env.eba-3wrxffmf.us-east-1.elasticbeanstalk.com/drafts/playerwithteam/${draftCode}`,
+        `http://localhost:8080/drafts/playerwithteam/${draftCode}`,
         options
       );
       console.log(responce); // Log the response
@@ -126,7 +126,7 @@ const DraftSettings = () => {
     try {
       console.log("Here is the players ids " + playerids);
       const responce = await fetch(
-        `http://draft-app-backend-env.eba-3wrxffmf.us-east-1.elasticbeanstalk.com/delete-players`,
+        `http://localhost:8080/delete-players`,
         options
       );
       console.log(responce);

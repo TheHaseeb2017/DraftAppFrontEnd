@@ -30,7 +30,7 @@ const EnterDraftSummary = () => {
     };
     try {
       const responce = await fetch(
-        `http://draft-app-backend-env.eba-3wrxffmf.us-east-1.elasticbeanstalk.com/drafts/validate/${draftCode}`,
+        `http://localhost:8080/drafts/validate/${draftCode}`,
         options
       );
 
@@ -58,7 +58,7 @@ const EnterDraftSummary = () => {
     };
     try {
       const responce = await fetch(
-        `http://draft-app-backend-env.eba-3wrxffmf.us-east-1.elasticbeanstalk.com/drafts/draftpicks/${draftCode}`,
+        `http://localhost:8080/drafts/draftpicks/${draftCode}`,
         options
       );
       console.log(responce); // Log the response
@@ -79,7 +79,7 @@ const EnterDraftSummary = () => {
     };
     try {
       const responce = await fetch(
-        `http://draft-app-backend-env.eba-3wrxffmf.us-east-1.elasticbeanstalk.com/drafts/playerandteam/${draftCode}`,
+        `http://localhost:8080/drafts/playerandteam/${draftCode}`,
         options
       );
       console.log(responce); // Log the response

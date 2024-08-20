@@ -6,8 +6,10 @@ import React, { useState, useEffect, useContext } from "react";
 const EnterDraftComponent = ({
   draftCode,
   setDraftCode,
+  teamCode,
+  setTeamCode,
   textFieldStyle,
-  validateDraftCode,
+  validateTeamCode,
   errorMessage,
   setSocket,
   socket,
@@ -15,7 +17,7 @@ const EnterDraftComponent = ({
   const [connected, setConnected] = useState(false);
 
   useEffect(() => {
-    const newSocket = io.connect(`http://draft-app-backend-env.eba-3wrxffmf.us-east-1.elasticbeanstalk.com/`);
+    const newSocket = io.connect(`http://localhost:8080/`);
     setSocket(newSocket);
   }, []);
 
@@ -31,13 +33,13 @@ const EnterDraftComponent = ({
     <div className="App-header">
       <h1> Enter Draft </h1>{" "}
       <TextField
-        placeholder="Enter draft code here ..."
-        onChange={(event) => setDraftCode(event.target.value)}
+        placeholder="Enter team code here ..."
+        onChange={(event) => setTeamCode(event.target.value)}
         style={textFieldStyle}
       />
       <Button
         onClick={(event) => {
-          validateDraftCode(event);
+        validateTeamCode(event);
           handleConnect();
         }}
       >
