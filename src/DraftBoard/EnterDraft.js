@@ -21,6 +21,7 @@ const EnterDraft = () => {
   const [showDraft, setShowDraft] = useState(false);
   const [errorMessage, setErrorMessage] = useState("");
   const [teamID, setTeamID] = useState([]);
+  const [canDraft, setCanDraft] = useState(false);
   let [index, setIndex] = useState(0);
   let [pick, setPick] = useState(0);
   let [round, setRound] = useState(1);
@@ -35,13 +36,20 @@ const EnterDraft = () => {
   useEffect(() => {
     getPlayers();
     getDraftedPlayers();
+    if (draftCode != "") {
+      validateTeamCode();
+    }
   }, [draftCode, pick]);
 
   useEffect(() => {
     getTeams();
   }, [draftCode]);
 
+ 
+
   async function validateTeamCode(event) {
+    let localCanDraft = false;
+    let localDraftCode = "";
     const options = {
       method: "GET",
       headers: {
@@ -55,14 +63,18 @@ const EnterDraft = () => {
         options
       );
 
-      console.log('Tis team code ' + teamCode); // Log the response
+      console.log("Tis team code " + teamCode); // Log the response
       const data = await responce.json();
-     
-      setErrorMessage("");
-      const draftcodeco = data[0].draftcode; 
-      setDraftCode(draftcodeco); 
-    getDraft()
 
+      setErrorMessage("");
+      localDraftCode = data[0].draftcode;
+      localCanDraft = data[0].candraft;
+
+      setDraftCode(localDraftCode);
+      setCanDraft(localCanDraft);
+
+      console.log("This is the can draft: " + canDraft);
+      getDraft();
     } catch (error) {
       console.log(error);
       setErrorMessage(
@@ -73,8 +85,7 @@ const EnterDraft = () => {
   }
 
   async function getDraft() {
-
-    console.log ("Draftcode " + draftCode)
+    console.log("Draftcode " + draftCode);
     const options = {
       method: "GET",
       headers: {
@@ -95,15 +106,13 @@ const EnterDraft = () => {
       setTimer(data[0].duration);
       setShowDraft(true);
 
-      getPlayers(draftCode);
-      getTeams(draftCode);
+      getPlayers();
+      getTeams();
     } catch (error) {
       console.log(error);
       setShowDraft(false);
     }
   }
-
-  
 
   async function getPlayers() {
     const options = {
@@ -145,53 +154,47 @@ const EnterDraft = () => {
     }
   }
 
-  async function updateCanDraft () {
+  async function updateCanDraft() {
+    let localIndex = index + 1;
 
-    let localIndex = index + 1; 
+    if (localIndex != teams.length) {
+      console.log("This is the index: " + localIndex);
 
-    if (localIndex == teams.length) {
-      localIndex = 0; 
-    }
-    
-    console.log("This is the index: " + localIndex); 
-
-    if (players.length !== 0) {
-      console.log(
-        "This is the index " +
-          localIndex +
-          " This the length of teams " +
-          teams.length + 
-          " This is the first team " + teams[0].teamname
-      );
-
-      const teamcode = teams[localIndex].teamcode; 
-
-      const options = {
-        method: "PUT",
-        headers: {
-          Accept: "application/json",
-          "Content-Type": "application/json",
-        }
-      };
-
-      try {
-        const responce = await fetch(
-          `http://localhost:8080/candraft/update/${teamcode}`,
-          options
+      if (players.length !== 0) {
+        console.log(
+          "This is the index " +
+            localIndex +
+            " This the length of teams " +
+            teams.length +
+            " This is the first team " +
+            teams[0].teamname
         );
-        console.log(responce); // Log the response
-        const data = await responce.json();
-        console.log(data);
-      } catch (error) {
-        console.log(error);
+
+        const teamcode = teams[localIndex].teamcode;
+
+        const options = {
+          method: "PUT",
+          headers: {
+            Accept: "application/json",
+            "Content-Type": "application/json",
+          },
+        };
+
+        try {
+          const responce = await fetch(
+            `http://localhost:8080/candraft/update/${teamcode}`,
+            options
+          );
+          console.log(responce); // Log the response
+          const data = await responce.json();
+          console.log(data);
+        } catch (error) {
+          console.log(error);
+        }
+      } else {
+        console.log("The Draft is over no more players to be drated");
       }
-
- 
-    } else {
-      console.log("The Draft is over no more players to be drated");
     }
-  
-
   }
   async function updatePlayerTeam(PlayerID) {
     if (players.length !== 0) {
@@ -291,6 +294,28 @@ const EnterDraft = () => {
       console.log(error);
     }
   }
+  async function returnDraftCode() {
+    const options = {
+      method: "GET",
+      headers: {
+        Accept: "application/json",
+        "Content-Type": "application/json",
+      },
+    };
+    try {
+      const responce = await fetch(
+        `http://localhost:8080/teams/validate/${teamCode}`,
+        options
+      );
+      const data = await responce.json();
+
+      console.log("This is the draft code from return " + data[0].draftcode);
+
+      return data[0].draftcode;
+    } catch (error) {
+      console.log(error);
+    }
+  }
 
   async function getTeams() {
     const options = {
@@ -307,7 +332,9 @@ const EnterDraft = () => {
       );
       console.log("Team response " + responce); // Log the response
       const data = await responce.json();
-      
+
+      console.log("Here is one team " + data[0].teamname);
+
       setTeams(data);
       setTeamID(data.map((team) => team.teamid));
     } catch (error) {
@@ -328,6 +355,7 @@ const EnterDraft = () => {
           errorMessage={errorMessage}
           setSocket={setSocket}
           socket={socket}
+          returnDraftCode={returnDraftCode}
         />
       )}
 
@@ -416,6 +444,7 @@ const EnterDraft = () => {
                   setTeams={setTeams}
                   setIndex={setIndex}
                   updateCanDraft={updateCanDraft}
+                  canDraft={canDraft}
                 />
               </Box>
             )}

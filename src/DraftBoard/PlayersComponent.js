@@ -14,7 +14,8 @@ const PlayersComponent = ({
   socket,
   setTeams,
   setIndex,
-  updateCanDraft
+  updateCanDraft,
+  canDraft,
 }) => {
   const style = {
     table: {
@@ -43,6 +44,7 @@ const PlayersComponent = ({
       width: 150,
       renderCell: (params) => (
         <Button
+          disabled={false}
           onClick={() => handlePlayerClick(params.row.id)}
           style={style.button}
         >
@@ -58,12 +60,11 @@ const PlayersComponent = ({
   }));
 
   const handlePlayerClick = async (playerId) => {
-     
     await updatePlayerTeam(playerId);
     await addPickedPlayer(playerId);
     await getPlayers();
     await getDraftedPlayers();
-    await updateCanDraft(); 
+    await updateCanDraft();
     const pickNumber = pick + 1;
     setPick(pickNumber);
     await socket.emit("updatePlayers");
@@ -78,6 +79,17 @@ const PlayersComponent = ({
       socket.off("recUpdateIndex");
     };
   }, [setIndex]);
+
+  useEffect(() => {
+    socket.on("recUpdatedPlayers", () => {
+      getPlayers();
+      getDraftedPlayers();
+    });
+
+    return () => {
+      socket.off("recUpdatedPlayers");
+    };
+  }, [getPlayers]);
 
   useEffect(() => {
     socket.on("recUpdatedDraftOrder", (updatedTeams) => {

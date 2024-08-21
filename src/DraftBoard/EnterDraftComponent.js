@@ -13,6 +13,7 @@ const EnterDraftComponent = ({
   errorMessage,
   setSocket,
   socket,
+  returnDraftCode,
 }) => {
   const [connected, setConnected] = useState(false);
 
@@ -21,13 +22,16 @@ const EnterDraftComponent = ({
     setSocket(newSocket);
   }, []);
 
-  const handleConnect = () => {
-    socket.emit("connectToDraft", draftCode);
+  async function handleConnect() {
+
+    const localDraftCode = await returnDraftCode(); 
+    console.log("This is the draft code from handle " + localDraftCode);
+    socket.emit("connectToDraft", localDraftCode);
 
     socket.on("connected", () => {
       setConnected(true);
     });
-  };
+  }
 
   return (
     <div className="App-header">
@@ -39,7 +43,7 @@ const EnterDraftComponent = ({
       />
       <Button
         onClick={(event) => {
-        validateTeamCode(event);
+          validateTeamCode(event);
           handleConnect();
         }}
       >
