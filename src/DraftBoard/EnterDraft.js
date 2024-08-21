@@ -10,7 +10,7 @@ import CountDownTimer from "./CountDownComponent";
 import { Socket } from "socket.io-client";
 
 const EnterDraft = () => {
-  const [draftCode, setDraftCode] = useState("");
+  const [draftCode, setDraftCode] = useState(null);
   const [teamCode, setTeamCode] = useState("");
   const [timer, setTimer] = useState(null);
   const [connectedUsers, setConnectedUsers] = useState([]);
@@ -34,18 +34,19 @@ const EnterDraft = () => {
   };
 
   useEffect(() => {
+    let index = 0;
     getPlayers();
     getDraftedPlayers();
-    if (draftCode != "") {
+    if (draftCode !== null && index !== 1) {
       validateTeamCode();
+      index++;
     }
+    getCanDraft();
   }, [draftCode, pick]);
 
   useEffect(() => {
     getTeams();
   }, [draftCode]);
-
- 
 
   async function validateTeamCode(event) {
     let localCanDraft = false;
@@ -84,6 +85,34 @@ const EnterDraft = () => {
     }
   }
 
+  async function getCanDraft(event) {
+    let localCanDraft = false;
+    const options = {
+      method: "GET",
+      headers: {
+        Accept: "application/json",
+        "Content-Type": "application/json",
+      },
+    };
+    try {
+      const responce = await fetch(
+        `http://localhost:8080/teams/validate/${teamCode}`,
+        options
+      );
+
+      const data = await responce.json();
+
+      localCanDraft = data[0].candraft;
+      
+
+      setCanDraft(localCanDraft);
+
+      console.log("This is the the local can draft: " + localCanDraft + " This is the state can draft " + canDraft)
+    } catch (error) {
+      console.log(error);
+    }
+  }
+
   async function getDraft() {
     console.log("Draftcode " + draftCode);
     const options = {
@@ -107,7 +136,7 @@ const EnterDraft = () => {
       setShowDraft(true);
 
       getPlayers();
-      getTeams();
+  
     } catch (error) {
       console.log(error);
       setShowDraft(false);
@@ -141,11 +170,11 @@ const EnterDraft = () => {
     if (index === teams.length - 1) {
       emittedTeams = [...teams].reverse();
       emittedIndex = 0;
+      socket.emit("updateIndex", emittedIndex);
+      socket.emit("updateDraftOrder", emittedTeams);
+      console.log("Reverse Occured ");
       setTeams([...emittedTeams]);
       setIndex(emittedIndex);
-
-      socket.emit("updateDraftOrder", emittedTeams);
-      socket.emit("updateIndex", emittedIndex);
     } else {
       emittedIndex = index + 1;
       setIndex(emittedIndex);
@@ -445,6 +474,7 @@ const EnterDraft = () => {
                   setIndex={setIndex}
                   updateCanDraft={updateCanDraft}
                   canDraft={canDraft}
+                  getCanDraft={getCanDraft}
                 />
               </Box>
             )}

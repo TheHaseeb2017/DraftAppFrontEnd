@@ -6,8 +6,8 @@ import TeamForm from "./DraftCreation/TeamForm";
 import PlayerForm from "./DraftCreation/PlayerForm";
 import DraftCreated from "./DraftCreation/DraftCreated";
 import EnterDraft from "./DraftBoard/EnterDraft";
-import EnterDraftSummary from "./DraftSummary/EnterDraftSummary"
-import EnterDraftSetting from "./DraftSettings/EnterDraftSettings"
+import EnterDraftSummary from "./DraftSummary/EnterDraftSummary";
+import EnterDraftSetting from "./DraftSettings/EnterDraftSettings";
 import NavBar from "./NavBar";
 import { DraftCodeProvider } from "./DraftCodeContext";
 
@@ -16,6 +16,7 @@ function App() {
   const [showTF, setShowTF] = useState(false);
   const [showPF, setShowPF] = useState(false);
   const [showDC, setShowDC] = useState(false);
+  const [email, setEmail] = useState("");
 
   return (
     <div>
@@ -27,7 +28,11 @@ function App() {
               <Route
                 path="/"
                 element={
-                  <DraftForm setShowDF={setShowDF} setShowTF={setShowTF} />
+                  <DraftForm
+                    setShowDF={setShowDF}
+                    setShowTF={setShowTF}
+                    setEmail={setEmail}
+                  />
                 }
               />
             )}
@@ -51,7 +56,11 @@ function App() {
               <Route
                 path="/"
                 element={
-                  <DraftCreated setShowDC={setShowDC} setShowDF={setShowDF} />
+                  <DraftCreated
+                    setShowDC={setShowDC}
+                    setShowDF={setShowDF}
+                    email={email}
+                  />
                 }
               />
             )}

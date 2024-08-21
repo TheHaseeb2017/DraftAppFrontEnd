@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { Button, Grid, Box } from "@mui/material";
+import { Button, Grid, Box, backdropClasses } from "@mui/material";
 import { DataGrid } from "@mui/x-data-grid";
 import "../App.css";
 
@@ -16,6 +16,7 @@ const PlayersComponent = ({
   setIndex,
   updateCanDraft,
   canDraft,
+  getCanDraft,
 }) => {
   const style = {
     table: {
@@ -24,10 +25,17 @@ const PlayersComponent = ({
       backgroundColor: "#282c34",
       borderRadius: "8px",
     },
-    button: {
+    buttonEnabled: {
       border: "1px solid #1976d2",
-      color: "black",
+      color: "white",
       margin: "10px",
+      backgroundColor: "green",
+    },
+    buttonDisabled: {
+      border: "1px solid #1976d2",
+      color: "white",
+      margin: "10px",
+      backgroundColor: "red",
     },
   };
 
@@ -44,9 +52,9 @@ const PlayersComponent = ({
       width: 150,
       renderCell: (params) => (
         <Button
-          disabled={false}
+          disabled={!canDraft}
           onClick={() => handlePlayerClick(params.row.id)}
-          style={style.button}
+          style={canDraft ? style.buttonEnabled : style.buttonDisabled}
         >
           Draft
         </Button>
@@ -84,6 +92,7 @@ const PlayersComponent = ({
     socket.on("recUpdatedPlayers", () => {
       getPlayers();
       getDraftedPlayers();
+      getCanDraft();
     });
 
     return () => {

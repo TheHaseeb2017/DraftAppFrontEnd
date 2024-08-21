@@ -10,12 +10,17 @@ const textFieldStyle = {
   borderRadius: "8px",
 };
 
-function DraftForm({ setShowDF, setShowTF }) {
+function DraftForm({ setShowDF, setShowTF, setEmail }) {
+  
   const [draftName, setDraftName] = useState("");
   const [draftDate, setDraftDate] = useState("");
   const [isActive, setIsActive] = useState(false);
   const [duration, setDuration] = useState(null);
   const { setDraftCode } = useContext(DraftCodeContext);
+
+  function handleEmailChange(event) {
+    setEmail(event.target.value);
+  }
 
   function handleDraftNameChange(event) {
     setDraftName(event.target.value);
@@ -42,7 +47,6 @@ function DraftForm({ setShowDF, setShowTF }) {
       duration: duration,
     };
 
-
     const options = {
       method: "POST",
       headers: {
@@ -52,13 +56,8 @@ function DraftForm({ setShowDF, setShowTF }) {
       body: JSON.stringify(draft),
     };
 
-
-
     try {
-      const responce = await fetch(
-        `http://localhost:8080/drafts`,
-        options
-      );
+      const responce = await fetch(`http://localhost:8080/drafts`, options);
       const data = await responce.json();
       setDraftName("");
       setDraftDate("");
@@ -70,10 +69,7 @@ function DraftForm({ setShowDF, setShowTF }) {
     } catch (error) {
       console.log(error);
 
-      console.log(
-        "This is the url: " +
-          `http://localhost:8080/drafts`
-      );
+      console.log("This is the url: " + `http://localhost:8080/drafts`);
     }
   }
 
@@ -96,6 +92,11 @@ function DraftForm({ setShowDF, setShowTF }) {
         <TextField
           onChange={handleDraftTimerChange}
           placeholder="Draft Timer in Minutes..."
+          style={textFieldStyle}
+        />
+        <TextField
+          onChange={handleEmailChange}
+          placeholder="Email Addrees..." 
           style={textFieldStyle}
         />
         <FormControlLabel

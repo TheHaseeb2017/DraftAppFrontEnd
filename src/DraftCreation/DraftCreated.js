@@ -14,7 +14,7 @@ const style = {
   },
 };
 
-function DraftCreated({ setShowDC, setShowDF }) {
+function DraftCreated({ setShowDC, setShowDF, email }) {
   const { draftCode } = useContext(DraftCodeContext);
   const [players, setPlayers] = useState([]);
   const [teams, setTeams] = useState([]);
@@ -23,11 +23,31 @@ function DraftCreated({ setShowDC, setShowDF }) {
   useEffect(() => {
     getPlayers();
     getTeams();
+    sendDraftCodeEmail();
   }, []);
 
   function handleButtonClick() {
     setShowDC(false);
     setShowDF(true);
+  }
+
+  async function sendDraftCodeEmail() {
+    const response = await fetch("http://localhost:8080/send-draft-code", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({
+        userEmail: email,
+        draftCode: draftCode,
+      }),
+    });
+
+    if (response.ok) {
+      console.log("Email sent successfully");
+    } else {
+      console.log("Failed to send email");
+    }
   }
 
   async function getPlayers() {
@@ -93,7 +113,6 @@ function DraftCreated({ setShowDC, setShowDF }) {
       headerName: "Team Name",
       width: "200",
       cellClassName: "Data-grid-cell",
-
     },
 
     {
@@ -108,14 +127,14 @@ function DraftCreated({ setShowDC, setShowDF }) {
       headerName: "Draft Order",
       width: "200",
       cellClassName: "Data-grid-cell",
-    }
+    },
   ];
 
   const teamsrows = teams.map((team) => ({
     id: team.teamid,
     teamname: team.teamname,
     teamcode: team.teamcode,
-    draftorder: team.draftorder
+    draftorder: team.draftorder,
   }));
 
   return (
