@@ -61,7 +61,7 @@ const EnterDraft = () => {
     };
     try {
       const responce = await fetch(
-        `http://localhost:8080/teams/validate/${teamCode}`,
+        `http://http://backend2.eba-pzytpusd.us-east-1.elasticbeanstalk.com/teams/validate/${teamCode}`,
         options
       );
 
@@ -97,7 +97,7 @@ const EnterDraft = () => {
     };
     try {
       const responce = await fetch(
-        `http://localhost:8080/teams/validate/${teamCode}`,
+        `http://http://backend2.eba-pzytpusd.us-east-1.elasticbeanstalk.com/teams/validate/${teamCode}`,
         options
       );
 
@@ -129,7 +129,7 @@ const EnterDraft = () => {
     };
     try {
       const responce = await fetch(
-        `http://localhost:8080/drafts/validate/${draftCode}`,
+        `http://http://backend2.eba-pzytpusd.us-east-1.elasticbeanstalk.com/drafts/validate/${draftCode}`,
         options
       );
 
@@ -158,7 +158,7 @@ const EnterDraft = () => {
     };
     try {
       const responce = await fetch(
-        `http://localhost:8080/player/notdrafted/${draftCode}`,
+        `http://http://backend2.eba-pzytpusd.us-east-1.elasticbeanstalk.com/player/notdrafted/${draftCode}`,
         options
       );
       console.log(responce); // Log the response
@@ -216,7 +216,7 @@ const EnterDraft = () => {
 
         try {
           const responce = await fetch(
-            `http://localhost:8080/candraft/update/${teamcode}`,
+            `http://http://backend2.eba-pzytpusd.us-east-1.elasticbeanstalk.com/candraft/update/${teamcode}`,
             options
           );
           console.log(responce); // Log the response
@@ -254,7 +254,7 @@ const EnterDraft = () => {
 
       try {
         const responce = await fetch(
-          `http://localhost:8080/player/addteam/${PlayerID}`,
+          `http://http://backend2.eba-pzytpusd.us-east-1.elasticbeanstalk.com/player/addteam/${PlayerID}`,
           options
         );
         console.log(responce); // Log the response
@@ -294,7 +294,7 @@ const EnterDraft = () => {
       };
       try {
         const responce = await fetch(
-          `http://localhost:8080/draftpicks`,
+          `http://http://backend2.eba-pzytpusd.us-east-1.elasticbeanstalk.com/draftpicks`,
           options
         );
         console.log(responce); // Log the response
@@ -318,7 +318,7 @@ const EnterDraft = () => {
     };
     try {
       const responce = await fetch(
-        `http://localhost:8080/drafts/playerandteam/${draftCode}`,
+        `http://http://backend2.eba-pzytpusd.us-east-1.elasticbeanstalk.com/drafts/playerandteam/${draftCode}`,
         options
       );
       console.log(responce); // Log the response
@@ -338,7 +338,7 @@ const EnterDraft = () => {
     };
     try {
       const responce = await fetch(
-        `http://localhost:8080/teams/validate/${teamCode}`,
+        `http://http://backend2.eba-pzytpusd.us-east-1.elasticbeanstalk.com/teams/validate/${teamCode}`,
         options
       );
       const data = await responce.json();
@@ -361,7 +361,7 @@ const EnterDraft = () => {
     };
     try {
       const responce = await fetch(
-        `http://localhost:8080/teams/draftorder/${draftCode}`,
+        `http://http://backend2.eba-pzytpusd.us-east-1.elasticbeanstalk.com/teams/draftorder/${draftCode}`,
         options
       );
       console.log("Team response " + responce); // Log the response

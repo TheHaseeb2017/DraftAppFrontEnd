@@ -57,7 +57,7 @@ function DraftForm({ setShowDF, setShowTF, setEmail }) {
     };
 
     try {
-      const responce = await fetch(`http://localhost:8080/drafts`, options);
+      const responce = await fetch(`http://http://backend2.eba-pzytpusd.us-east-1.elasticbeanstalk.com/drafts`, options);
       const data = await responce.json();
       setDraftName("");
       setDraftDate("");
@@ -69,7 +69,7 @@ function DraftForm({ setShowDF, setShowTF, setEmail }) {
     } catch (error) {
       console.log(error);
 
-      console.log("This is the url: " + `http://localhost:8080/drafts`);
+      console.log("This is the url: " + `http://http://backend2.eba-pzytpusd.us-east-1.elasticbeanstalk.com/drafts`);
     }
   }
 

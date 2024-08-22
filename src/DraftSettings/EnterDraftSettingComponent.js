@@ -20,7 +20,7 @@ const EnterDraftSettingComponent = ({
   setSocket
 }) => {
   useEffect(() => {
-    const newSocket = io.connect(`http://localhost:8080/`);
+    const newSocket = io.connect(`http://http://backend2.eba-pzytpusd.us-east-1.elasticbeanstalk.com/`);
     setSocket(newSocket);
   }, []);
 

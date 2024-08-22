@@ -41,7 +41,7 @@ const DraftSettings = () => {
     };
     try {
       const responce = await fetch(
-        `http://localhost:8080/drafts/validate/${draftCode}`,
+        `http://http://backend2.eba-pzytpusd.us-east-1.elasticbeanstalk.com/drafts/validate/${draftCode}`,
         options
       );
 
@@ -83,7 +83,7 @@ const DraftSettings = () => {
 
     try {
       const responce = await fetch(
-        `http://localhost:8080/draftsetting/update/${draftCode}`,
+        `http://http://backend2.eba-pzytpusd.us-east-1.elasticbeanstalk.com/draftsetting/update/${draftCode}`,
         options
       );
       console.log(responce); // Log the response
@@ -104,7 +104,7 @@ const DraftSettings = () => {
     };
     try {
       const responce = await fetch(
-        `http://localhost:8080/drafts/playerwithteam/${draftCode}`,
+        `http://http://backend2.eba-pzytpusd.us-east-1.elasticbeanstalk.com/drafts/playerwithteam/${draftCode}`,
         options
       );
       console.log(responce); // Log the response
@@ -127,7 +127,7 @@ const DraftSettings = () => {
     try {
       console.log("Here is the players ids " + playerids);
       const responce = await fetch(
-        `http://localhost:8080/delete-players`,
+        `http://http://backend2.eba-pzytpusd.us-east-1.elasticbeanstalk.com/delete-players`,
         options
       );
       console.log(responce);
