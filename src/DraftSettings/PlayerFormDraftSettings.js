@@ -56,7 +56,7 @@ function PlayerFormDraftSettings({ draftCode, getPlayersWithTeam }) {
       body: JSON.stringify(team),
     };
     try {
-      const responce = await fetch(`http://http://backend2.eba-pzytpusd.us-east-1.elasticbeanstalk.com/play`, options);
+      const responce = await fetch(`http://backend2.eba-pzytpusd.us-east-1.elasticbeanstalk.com/play`, options);
       console.log(responce); // Log the response
       const data = await responce.json();
 

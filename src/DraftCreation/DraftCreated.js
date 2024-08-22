@@ -32,7 +32,7 @@ function DraftCreated({ setShowDC, setShowDF, email }) {
   }
 
   async function sendDraftCodeEmail() {
-    const response = await fetch("http://http://backend2.eba-pzytpusd.us-east-1.elasticbeanstalk.com/send-draft-code", {
+    const response = await fetch("http://backend2.eba-pzytpusd.us-east-1.elasticbeanstalk.com/send-draft-code", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
@@ -60,7 +60,7 @@ function DraftCreated({ setShowDC, setShowDF, email }) {
     };
     try {
       const responce = await fetch(
-        `http://http://backend2.eba-pzytpusd.us-east-1.elasticbeanstalk.com/player/notdrafted/${draftCode}`,
+        `http://backend2.eba-pzytpusd.us-east-1.elasticbeanstalk.com/player/notdrafted/${draftCode}`,
         options
       );
       console.log(responce); // Log the response
@@ -81,7 +81,7 @@ function DraftCreated({ setShowDC, setShowDF, email }) {
     };
     try {
       const responce = await fetch(
-        `http://http://backend2.eba-pzytpusd.us-east-1.elasticbeanstalk.com/teams/indraft/${draftCode}`,
+        `http://backend2.eba-pzytpusd.us-east-1.elasticbeanstalk.com/teams/indraft/${draftCode}`,
         options
       );
       console.log(responce); // Log the response
