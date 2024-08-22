@@ -18,6 +18,12 @@ const PlayersDraftSettings = ({
       backgroundColor: "#282c34",
       borderRadius: "8px",
     },
+
+    textField: {
+      color: "#CC5500",
+      textShadow:
+        "1px 1px 0 black, -1px -1px 0 black, 1px -1px 0 black, -1px 1px 0 black",
+    },
   };
 
   async function handleDeletePlayer(playerid) {
@@ -78,11 +84,16 @@ const PlayersDraftSettings = ({
 
   return (
     <div className="App-comp">
-      <h3>Players in the Draft</h3>
+      <h3 style={style.textField}>Players in the Draft</h3>
       <Box display="flex" flexDirection="column" alignItems="center">
         <Grid item xs={12}>
           <DataGrid
-            style={{ backgroundColor: "white", width: "100%", height: 400, border: "10px solid #1976d2" }}
+            style={{
+              backgroundColor: "white",
+              width: "100%",
+              height: 400,
+              border: "10px solid #1976d2",
+            }}
             className="Data-grid"
             rows={rows}
             columns={columns}

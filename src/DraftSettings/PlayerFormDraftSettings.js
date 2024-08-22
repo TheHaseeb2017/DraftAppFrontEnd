@@ -16,6 +16,12 @@ const style = {
     border: "1px solid #1976d2",
     color: "white",
   },
+
+  textField: {
+    color: "#CC5500",
+    textShadow:
+      "1px 1px 0 black, -1px -1px 0 black, 1px -1px 0 black, -1px 1px 0 black",
+  },
 };
 
 function PlayerFormDraftSettings({ draftCode, getPlayersWithTeam }) {
@@ -50,10 +56,7 @@ function PlayerFormDraftSettings({ draftCode, getPlayersWithTeam }) {
       body: JSON.stringify(team),
     };
     try {
-      const responce = await fetch(
-        `http://localhost:8080/play`,
-        options
-      );
+      const responce = await fetch(`http://localhost:8080/play`, options);
       console.log(responce); // Log the response
       const data = await responce.json();
 
@@ -65,7 +68,7 @@ function PlayerFormDraftSettings({ draftCode, getPlayersWithTeam }) {
 
   return (
     <div className="App-comp">
-      <h3>Add Players</h3>
+      <h3 style={style.textField}>Add Players</h3>
       <form>
         <TextareaAutosize
           value={players}

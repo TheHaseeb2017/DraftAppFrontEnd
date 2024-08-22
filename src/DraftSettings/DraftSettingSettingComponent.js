@@ -35,10 +35,16 @@ const DraftSettingSettingComponent = ({
       color: "white",
       margin: "2px",
     },
+
+    textField: {
+      color: "#CC5500",
+      textShadow:
+        "1px 1px 0 black, -1px -1px 0 black, 1px -1px 0 black, -1px 1px 0 black",
+    },
   };
   return (
     <div className="App-comp">
-      <h3>Draft Settings </h3>
+      <h3 style={style.textField}>Draft Settings </h3>
       <TextField
         defaultValue={draftName}
         onChange={(event) => setDraftName(event.target.value)}

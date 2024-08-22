@@ -9,6 +9,7 @@ import {
   TableContainer,
   Paper,
   Box,
+  StyledEngineProvider,
 } from "@mui/material";
 import "../App.css";
 
@@ -23,10 +24,15 @@ const TeamsComponent = ({ draftedPlayers }) => {
     tablecell: {
       color: "black",
     },
+    textField: {
+      color: "#CC5500",
+      textShadow:
+        "1px 1px 0 black, -1px -1px 0 black, 1px -1px 0 black, -1px 1px 0 black",
+    },
   };
   return (
     <div className="App-comp">
-      <h3>Current Teams</h3>
+      <h3 style={style.textField}>Current Teams</h3>
 
       <Box display="flex">
         <Grid container spacing={0}>

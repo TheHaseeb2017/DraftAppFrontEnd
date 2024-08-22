@@ -22,7 +22,13 @@ const DraftComponent = ({ draftName, teams, index, draftActive }) => {
       <Grid item xs={12} sm={12} md={12}>
         {!draftActive && (
           <div className="App-comp">
-            <h5 style={{ color: "red", outlineColor: "white" }}>
+            <h5
+              style={{
+                color: "red",
+                textShadow:
+                  "1px 1px 0 black, -1px -1px 0 black, 1px -1px 0 black, -1px 1px 0 black",
+              }}
+            >
               Draft is currently inactive, request draft admin to activate to
               begin !!!
             </h5>

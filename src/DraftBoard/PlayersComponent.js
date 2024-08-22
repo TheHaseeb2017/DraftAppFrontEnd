@@ -38,6 +38,11 @@ const PlayersComponent = ({
       margin: "10px",
       backgroundColor: "red",
     },
+    textField: {
+      color: "#CC5500",
+      textShadow:
+        "1px 1px 0 black, -1px -1px 0 black, 1px -1px 0 black, -1px 1px 0 black",
+    },
   };
 
   const playerscolumns = [
@@ -125,7 +130,7 @@ const PlayersComponent = ({
 
   return (
     <div className="App-comp">
-      <h3> Undrafted Players</h3>
+      <h3 style={style.textField}> Undrafted Players</h3>
       <Box display="flex">
         <Grid container spacing={0} justifyContent="center" alignItems="center">
           <Grid item xs={12}>

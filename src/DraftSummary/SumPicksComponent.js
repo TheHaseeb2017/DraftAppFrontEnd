@@ -5,6 +5,13 @@ import { Box, Grid } from "@mui/material";
 import "../App.css";
 
 const SumPicksComponent = ({ picks }) => {
+  const style = {
+    textField: {
+      color: "#CC5500",
+      textShadow:
+        "1px 1px 0 black, -1px -1px 0 black, 1px -1px 0 black, -1px 1px 0 black",
+    },
+  };
   const columns = [
     {
       field: "roundnumber",
@@ -43,12 +50,17 @@ const SumPicksComponent = ({ picks }) => {
 
   return (
     <div className="App-comp">
-      <h3>Draft Picks</h3>
+      <h3 style={style.textField}>Draft Picks</h3>
 
       <Box display="flex" flexDirection="column" alignItems="center">
         <Grid item xs={12}>
           <DataGrid
-            style={{ backgroundColor: "white", width: "100%", height: 400, border: '10px solid #1976d2'}}
+            style={{
+              backgroundColor: "white",
+              width: "100%",
+              height: 400,
+              border: "10px solid #1976d2",
+            }}
             className="Data-grid"
             rows={rows}
             columns={columns}

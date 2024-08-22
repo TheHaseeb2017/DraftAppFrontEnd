@@ -34,7 +34,6 @@ const EnterDraft = () => {
     borderRadius: "8px",
   };
 
-
   useEffect(() => {
     let index = 0;
     getPlayers();
