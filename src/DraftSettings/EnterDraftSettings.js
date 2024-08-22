@@ -25,6 +25,7 @@ const DraftSettings = () => {
   const [timer, setTimer] = useState();
   const [isactive, setIsActive] = useState();
   const [players, setPlayers] = useState([]);
+  const [socket, setSocket] = useState(null);
 
   useEffect(() => {
     getPlayersWithTeam();
@@ -148,6 +149,8 @@ const DraftSettings = () => {
                 textFieldStyle={textFieldStyle}
                 getPlayersWithTeam={getPlayersWithTeam}
                 draftCode={draftCode}
+                socket={socket}
+                setSocket={setSocket}
               />
             </div>
           )}
@@ -173,6 +176,8 @@ const DraftSettings = () => {
               setTimer={setTimer}
               setIsActive={setIsActive}
               updateDraft={updateDraft}
+              socket={socket}
+              setSocket={setSocket}
             />
           )}
         </Grid>

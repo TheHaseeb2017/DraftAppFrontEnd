@@ -1,10 +1,9 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { TextField, Button, FormControlLabel, Checkbox } from "@mui/material";
+import io from "socket.io-client";
 import "../App.css";
 
 const DraftSettingSettingComponent = ({
-  draftSettings,
-  textFieldStyle,
   draftName,
   draftDate,
   timer,
@@ -14,6 +13,8 @@ const DraftSettingSettingComponent = ({
   setTimer,
   setIsActive,
   updateDraft,
+  socket,
+  setSocket,
 }) => {
   const style = {
     table: {
@@ -69,8 +70,9 @@ const DraftSettingSettingComponent = ({
       />
       <Button
         style={style.button}
-        onClick={(event) => {
-          updateDraft();
+        onClick={async (event) => {
+          await updateDraft();
+          socket.emit("updateDraft");
         }}
       >
         Change Settings

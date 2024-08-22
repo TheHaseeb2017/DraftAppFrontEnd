@@ -22,6 +22,7 @@ const EnterDraft = () => {
   const [errorMessage, setErrorMessage] = useState("");
   const [teamID, setTeamID] = useState([]);
   const [canDraft, setCanDraft] = useState(false);
+  const [draftActive, setDraftActive] = useState(false);
   let [index, setIndex] = useState(0);
   let [pick, setPick] = useState(0);
   let [round, setRound] = useState(1);
@@ -32,6 +33,7 @@ const EnterDraft = () => {
     margin: "8px",
     borderRadius: "8px",
   };
+
 
   useEffect(() => {
     let index = 0;
@@ -103,11 +105,15 @@ const EnterDraft = () => {
       const data = await responce.json();
 
       localCanDraft = data[0].candraft;
-      
 
       setCanDraft(localCanDraft);
 
-      console.log("This is the the local can draft: " + localCanDraft + " This is the state can draft " + canDraft)
+      console.log(
+        "This is the the local can draft: " +
+          localCanDraft +
+          " This is the state can draft " +
+          canDraft
+      );
     } catch (error) {
       console.log(error);
     }
@@ -133,10 +139,10 @@ const EnterDraft = () => {
       setErrorMessage("");
       setDraftName(data[0].draftname);
       setTimer(data[0].duration);
+      setDraftActive(data[0].isactive);
       setShowDraft(true);
 
       getPlayers();
-  
     } catch (error) {
       console.log(error);
       setShowDraft(false);
@@ -413,7 +419,12 @@ const EnterDraft = () => {
           </Box>
         )}
         {showDraft && (
-          <DraftComponent draftName={draftName} teams={teams} index={index} />
+          <DraftComponent
+            draftName={draftName}
+            teams={teams}
+            index={index}
+            draftActive={draftActive}
+          />
         )}
 
         <Grid container spacing={1}>
@@ -475,6 +486,7 @@ const EnterDraft = () => {
                   updateCanDraft={updateCanDraft}
                   canDraft={canDraft}
                   getCanDraft={getCanDraft}
+                  getDraft={getDraft}
                 />
               </Box>
             )}

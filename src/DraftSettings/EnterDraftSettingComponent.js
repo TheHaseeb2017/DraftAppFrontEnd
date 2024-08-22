@@ -1,4 +1,10 @@
-import { TextField, Button, getPaginationItemUtilityClass } from "@mui/material";
+import {
+  TextField,
+  Button,
+  getPaginationItemUtilityClass,
+} from "@mui/material";
+import { useEffect } from "react";
+import io from "socket.io-client";
 import "../App.css";
 
 import React from "react";
@@ -10,7 +16,20 @@ const EnterDraftSettingComponent = ({
   textFieldStyle,
   getPlayersWithTeam,
   draftCode,
+  socket,
+  setSocket
 }) => {
+  useEffect(() => {
+    const newSocket = io.connect(`http://localhost:8080/`);
+    setSocket(newSocket);
+  }, []);
+
+  async function handleConnect() {
+    const localDraftCode = draftCode;
+    console.log("This is the draft code from handle " + localDraftCode);
+    socket.emit("connectToDraft", localDraftCode);
+  }
+
   return (
     <div className="App-header">
       <h1> Draft Settings </h1>{" "}
@@ -24,6 +43,7 @@ const EnterDraftSettingComponent = ({
           console.log("This is the draftcode : " + draftCode);
           validateDraftCode(event);
           getPlayersWithTeam();
+          handleConnect(); 
         }}
       >
         Submit

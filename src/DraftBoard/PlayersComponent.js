@@ -17,6 +17,7 @@ const PlayersComponent = ({
   updateCanDraft,
   canDraft,
   getCanDraft,
+  getDraft,
 }) => {
   const style = {
     table: {
@@ -87,6 +88,18 @@ const PlayersComponent = ({
       socket.off("recUpdateIndex");
     };
   }, [setIndex]);
+
+  useEffect(() => {
+    socket.on("recDraftUpdate", () => {
+      console.log("Haseeb this function ran ");
+      getDraft();
+      getCanDraft(); 
+    });
+
+    return () => {
+      socket.off("recDraftUpdate");
+    };
+  }, []);
 
   useEffect(() => {
     socket.on("recUpdatedPlayers", () => {
