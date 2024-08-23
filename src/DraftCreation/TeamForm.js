@@ -70,7 +70,7 @@ function TeamForm({ setShowTF, setShowPF }) {
     };
     try {
       const responce = await fetch(
-        `http://backend2.eba-pzytpusd.us-east-1.elasticbeanstalk.com/teams`,
+        `http://backend.eba-mfjaqd2a.us-east-1.elasticbeanstalk.com/teams`,
         options
       );
       console.log(responce); // Log the response

@@ -70,7 +70,7 @@ function PlayerFormDraftSettings({ draftCode, getPlayersWithTeam }) {
     };
     try {
       const responce = await fetch(
-        `http://backend2.eba-pzytpusd.us-east-1.elasticbeanstalk.com/play`,
+        `http://backend.eba-mfjaqd2a.us-east-1.elasticbeanstalk.com/play`,
         options
       );
       console.log(responce); // Log the response

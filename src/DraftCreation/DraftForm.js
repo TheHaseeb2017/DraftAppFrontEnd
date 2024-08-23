@@ -63,7 +63,7 @@ function DraftForm({ setShowDF, setShowTF, setEmail }) {
 
     try {
       const responce = await fetch(
-        `http://backend2.eba-pzytpusd.us-east-1.elasticbeanstalk.com/drafts`,
+        `http://backend.eba-mfjaqd2a.us-east-1.elasticbeanstalk.com/drafts`,
         options
       );
       const data = await responce.json();
@@ -79,7 +79,7 @@ function DraftForm({ setShowDF, setShowTF, setEmail }) {
 
       console.log(
         "This is the url: " +
-          `http://backend2.eba-pzytpusd.us-east-1.elasticbeanstalk.com/drafts`
+          `http://backend.eba-mfjaqd2a.us-east-1.elasticbeanstalk.com/drafts`
       );
     }
   }

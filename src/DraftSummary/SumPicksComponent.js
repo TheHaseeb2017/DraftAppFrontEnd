@@ -1,10 +1,13 @@
 import React from "react";
+import { useState, useEffect } from "react";
 import { DataGrid } from "@mui/x-data-grid";
 import { Box, Grid } from "@mui/material";
 
 import "../App.css";
 
 const SumPicksComponent = ({ picks }) => {
+  const [isXsScreen, setIsXsScreen] = useState(window.innerWidth <= 600);
+
   const style = {
     textField: {
       color: "#CC5500",
@@ -48,6 +51,17 @@ const SumPicksComponent = ({ picks }) => {
     teamname: pick.Team.teamname,
   }));
 
+  useEffect(() => {
+    const handleResize = () => {
+      setIsXsScreen(window.innerWidth <= 600);
+    };
+
+    window.addEventListener("resize", handleResize);
+
+    // Clean up event listener on component unmount
+    return () => window.removeEventListener("resize", handleResize);
+  }, []);
+
   return (
     <div className="App-comp">
       <h3 style={style.textField}>Draft Picks</h3>
@@ -57,7 +71,7 @@ const SumPicksComponent = ({ picks }) => {
           <DataGrid
             style={{
               backgroundColor: "white",
-              width: "100%",
+              width: isXsScreen ? "375px" : "650px",
               height: 400,
               border: "10px solid #1976d2",
             }}

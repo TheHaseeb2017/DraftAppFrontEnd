@@ -73,7 +73,7 @@ const EnterDraft = () => {
     };
     try {
       const responce = await fetch(
-        `http://backend2.eba-pzytpusd.us-east-1.elasticbeanstalk.com/teams/validate/${teamCode}`,
+        `http://backend.eba-mfjaqd2a.us-east-1.elasticbeanstalk.com/teams/validate/${teamCode}`,
         options
       );
 
@@ -109,7 +109,7 @@ const EnterDraft = () => {
     };
     try {
       const responce = await fetch(
-        `http://backend2.eba-pzytpusd.us-east-1.elasticbeanstalk.com/teams/validate/${teamCode}`,
+        `http://backend.eba-mfjaqd2a.us-east-1.elasticbeanstalk.com/teams/validate/${teamCode}`,
         options
       );
 
@@ -141,7 +141,7 @@ const EnterDraft = () => {
     };
     try {
       const responce = await fetch(
-        `http://backend2.eba-pzytpusd.us-east-1.elasticbeanstalk.com/drafts/validate/${draftCode}`,
+        `http://backend.eba-mfjaqd2a.us-east-1.elasticbeanstalk.com/drafts/validate/${draftCode}`,
         options
       );
 
@@ -170,7 +170,7 @@ const EnterDraft = () => {
     };
     try {
       const responce = await fetch(
-        `http://backend2.eba-pzytpusd.us-east-1.elasticbeanstalk.com/player/notdrafted/${draftCode}`,
+        `http://backend.eba-mfjaqd2a.us-east-1.elasticbeanstalk.com/player/notdrafted/${draftCode}`,
         options
       );
       console.log(responce); // Log the response
@@ -228,7 +228,7 @@ const EnterDraft = () => {
 
         try {
           const responce = await fetch(
-            `http://backend2.eba-pzytpusd.us-east-1.elasticbeanstalk.com/candraft/update/${teamcode}`,
+            `http://backend.eba-mfjaqd2a.us-east-1.elasticbeanstalk.com/candraft/update/${teamcode}`,
             options
           );
           console.log(responce); // Log the response
@@ -266,7 +266,7 @@ const EnterDraft = () => {
 
       try {
         const responce = await fetch(
-          `http://backend2.eba-pzytpusd.us-east-1.elasticbeanstalk.com/player/addteam/${PlayerID}`,
+          `http://backend.eba-mfjaqd2a.us-east-1.elasticbeanstalk.com/player/addteam/${PlayerID}`,
           options
         );
         console.log(responce); // Log the response
@@ -306,7 +306,7 @@ const EnterDraft = () => {
       };
       try {
         const responce = await fetch(
-          `http://backend2.eba-pzytpusd.us-east-1.elasticbeanstalk.com/draftpicks`,
+          `http://backend.eba-mfjaqd2a.us-east-1.elasticbeanstalk.com/draftpicks`,
           options
         );
         console.log(responce); // Log the response
@@ -330,7 +330,7 @@ const EnterDraft = () => {
     };
     try {
       const responce = await fetch(
-        `http://backend2.eba-pzytpusd.us-east-1.elasticbeanstalk.com/drafts/playerandteam/${draftCode}`,
+        `http://backend.eba-mfjaqd2a.us-east-1.elasticbeanstalk.com/drafts/playerandteam/${draftCode}`,
         options
       );
       console.log(responce); // Log the response
@@ -350,7 +350,7 @@ const EnterDraft = () => {
     };
     try {
       const responce = await fetch(
-        `http://backend2.eba-pzytpusd.us-east-1.elasticbeanstalk.com/teams/validate/${teamCode}`,
+        `http://backend.eba-mfjaqd2a.us-east-1.elasticbeanstalk.com/teams/validate/${teamCode}`,
         options
       );
       const data = await responce.json();
@@ -373,7 +373,7 @@ const EnterDraft = () => {
     };
     try {
       const responce = await fetch(
-        `http://backend2.eba-pzytpusd.us-east-1.elasticbeanstalk.com/teams/draftorder/${draftCode}`,
+        `http://backend.eba-mfjaqd2a.us-east-1.elasticbeanstalk.com/teams/draftorder/${draftCode}`,
         options
       );
       console.log("Team response " + responce); // Log the response
@@ -390,7 +390,7 @@ const EnterDraft = () => {
 
   return (
     <div className="App-header">
-      {!showDraft && (
+      {!true && (
         <EnterDraftComponent
           draftCode={draftCode}
           setDraftCode={setDraftCode}
@@ -406,7 +406,7 @@ const EnterDraft = () => {
       )}
 
       <div className="App-comp">
-        {showDraft && (
+        {true && (
           <Box
             component="section"
             sx={{
@@ -429,7 +429,7 @@ const EnterDraft = () => {
             />
           </Box>
         )}
-        {showDraft && (
+        {true && (
           <DraftComponent
             draftName={draftName}
             teams={teams}
@@ -440,7 +440,7 @@ const EnterDraft = () => {
 
         <Grid container spacing={1}>
           <Grid item xs={12} sm={4} md={4}>
-            {showDraft && (
+            {true && (
               <Box
                 component="section"
                 sx={{
@@ -466,13 +466,13 @@ const EnterDraft = () => {
               }}
             >
               {" "}
-              {showDraft && (
+              {true && (
                 <DraftOrder teams={teams} setTeams={setTeams} socket={socket} />
               )}
             </Box>
           </Grid>
           <Grid item xs={12} sm={4} md={4}>
-            {showDraft && (
+            {true && (
               <Box
                 component="section"
                 sx={{
