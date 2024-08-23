@@ -390,7 +390,7 @@ const EnterDraft = () => {
 
   return (
     <div className="App-header">
-      {!true && (
+      {!showDraft && (
         <EnterDraftComponent
           draftCode={draftCode}
           setDraftCode={setDraftCode}
@@ -406,7 +406,7 @@ const EnterDraft = () => {
       )}
 
       <div className="App-comp">
-        {true && (
+        {showDraft && (
           <Box
             component="section"
             sx={{
@@ -429,7 +429,7 @@ const EnterDraft = () => {
             />
           </Box>
         )}
-        {true && (
+        {showDraft && (
           <DraftComponent
             draftName={draftName}
             teams={teams}
@@ -440,7 +440,7 @@ const EnterDraft = () => {
 
         <Grid container spacing={1}>
           <Grid item xs={12} sm={4} md={4}>
-            {true && (
+            {showDraft && (
               <Box
                 component="section"
                 sx={{
@@ -466,13 +466,13 @@ const EnterDraft = () => {
               }}
             >
               {" "}
-              {true && (
+              {showDraft && (
                 <DraftOrder teams={teams} setTeams={setTeams} socket={socket} />
               )}
             </Box>
           </Grid>
           <Grid item xs={12} sm={4} md={4}>
-            {true && (
+            {showDraft && (
               <Box
                 component="section"
                 sx={{
