@@ -1,31 +1,44 @@
-import { useState, useContext } from "react";
+import { useState, useContext, useEffect } from "react";
 import React from "react";
 import { TextareaAutosize, Button } from "@mui/material";
 
-const style = {
-  textAreaStyle: {
-    border: "10px solid #1976d2",
-    backgroundColor: "whiteSmoke",
-    margin: "8px",
-    borderRadius: "8px",
-    width: "500px",
-    height: "250px",
-  },
-
-  button: {
-    border: "1px solid #1976d2",
-    color: "white",
-  },
-
-  textField: {
-    color: "#CC5500",
-    textShadow:
-      "1px 1px 0 black, -1px -1px 0 black, 1px -1px 0 black, -1px 1px 0 black",
-  },
-};
-
 function PlayerFormDraftSettings({ draftCode, getPlayersWithTeam }) {
   const [players, setPlayers] = useState([]);
+
+  const [isXsScreen, setIsXsScreen] = useState(window.innerWidth <= 600);
+
+  const style = {
+    textAreaStyle: {
+      border: "10px solid #1976d2",
+      backgroundColor: "whiteSmoke",
+      margin: "8px",
+      borderRadius: "8px",
+      width: isXsScreen ? "300px" : "500px",
+      height: "250px",
+    },
+
+    button: {
+      border: "1px solid #1976d2",
+      color: "white",
+    },
+
+    textField: {
+      color: "#CC5500",
+      textShadow:
+        "1px 1px 0 black, -1px -1px 0 black, 1px -1px 0 black, -1px 1px 0 black",
+    },
+  };
+
+  useEffect(() => {
+    const handleResize = () => {
+      setIsXsScreen(window.innerWidth <= 600);
+    };
+
+    window.addEventListener("resize", handleResize);
+
+    // Clean up event listener on component unmount
+    return () => window.removeEventListener("resize", handleResize);
+  }, []);
 
   function handlePlayersChange(event) {
     setPlayers(event.target.value);
@@ -56,7 +69,10 @@ function PlayerFormDraftSettings({ draftCode, getPlayersWithTeam }) {
       body: JSON.stringify(team),
     };
     try {
-      const responce = await fetch(`http://backend2.eba-pzytpusd.us-east-1.elasticbeanstalk.com/play`, options);
+      const responce = await fetch(
+        `http://backend2.eba-pzytpusd.us-east-1.elasticbeanstalk.com/play`,
+        options
+      );
       console.log(responce); // Log the response
       const data = await responce.json();
 

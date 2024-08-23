@@ -1,6 +1,12 @@
 import { useContext, useState } from "react";
 import React from "react";
-import { Button, TextField, Checkbox, FormControlLabel } from "@mui/material";
+import {
+  Button,
+  TextField,
+  Checkbox,
+  FormControlLabel,
+  Grid,
+} from "@mui/material";
 import "../App.css";
 import DraftCodeContext from "../DraftCodeContext";
 
@@ -11,7 +17,6 @@ const textFieldStyle = {
 };
 
 function DraftForm({ setShowDF, setShowTF, setEmail }) {
-  
   const [draftName, setDraftName] = useState("");
   const [draftDate, setDraftDate] = useState("");
   const [isActive, setIsActive] = useState(false);
@@ -57,7 +62,10 @@ function DraftForm({ setShowDF, setShowTF, setEmail }) {
     };
 
     try {
-      const responce = await fetch(`http://backend2.eba-pzytpusd.us-east-1.elasticbeanstalk.com/drafts`, options);
+      const responce = await fetch(
+        `http://backend2.eba-pzytpusd.us-east-1.elasticbeanstalk.com/drafts`,
+        options
+      );
       const data = await responce.json();
       setDraftName("");
       setDraftDate("");
@@ -69,36 +77,49 @@ function DraftForm({ setShowDF, setShowTF, setEmail }) {
     } catch (error) {
       console.log(error);
 
-      console.log("This is the url: " + `http://backend2.eba-pzytpusd.us-east-1.elasticbeanstalk.com/drafts`);
+      console.log(
+        "This is the url: " +
+          `http://backend2.eba-pzytpusd.us-east-1.elasticbeanstalk.com/drafts`
+      );
     }
   }
 
   return (
-    <div className="App-header">
-      <h1>Create a Draft</h1>
-      <form>
+    <Grid container spacing={1} className="App-header">
+  <div className="App-header">
+    <h1>Create a Draft</h1>
+    <form>
+      <Grid item xs={12} className="Center-element">
         <TextField
           value={draftName}
           onChange={handleDraftNameChange}
           placeholder="Draft Name..."
           style={textFieldStyle}
         />
+      </Grid>
+      <Grid item xs={12} className="Center-element">
         <TextField
           value={draftDate}
           onChange={handleDraftDateChange}
           placeholder="Draft Date..."
           style={textFieldStyle}
         />
+      </Grid>
+      <Grid item xs={12} className="Center-element">
         <TextField
           onChange={handleDraftTimerChange}
           placeholder="Draft Timer in Minutes..."
           style={textFieldStyle}
         />
+      </Grid>
+      <Grid item xs={12} className="Center-element">
         <TextField
           onChange={handleEmailChange}
-          placeholder="Email Addrees..." 
+          placeholder="Email Address..."
           style={textFieldStyle}
         />
+      </Grid>
+      <Grid item xs={12} className="Center-element">
         <FormControlLabel
           label="Is Active? "
           control={
@@ -109,12 +130,16 @@ function DraftForm({ setShowDF, setShowTF, setEmail }) {
             />
           }
         />
-
+      </Grid>
+      <Grid item xs={12} className="Center-element">
         <div className="Center-element">
           <Button onClick={createDraft}>Submit</Button>
         </div>
-      </form>
-    </div>
+      </Grid>
+    </form>
+  </div>
+</Grid>
+
   );
 }
 export default DraftForm;

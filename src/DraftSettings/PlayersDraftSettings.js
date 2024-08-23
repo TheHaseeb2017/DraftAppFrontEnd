@@ -10,8 +10,8 @@ const PlayersDraftSettings = ({
   getPlayersWithTeam,
 }) => {
   const [selectionModel, setSelectionModel] = useState([]);
+  const [isXsScreen, setIsXsScreen] = useState(window.innerWidth <= 600);
 
-  
   const style = {
     table: {
       margin: "8px",
@@ -25,7 +25,25 @@ const PlayersDraftSettings = ({
       textShadow:
         "1px 1px 0 black, -1px -1px 0 black, 1px -1px 0 black, -1px 1px 0 black",
     },
+
+    gridStyle: {
+      backgroundColor: "white",
+      width: isXsScreen ? "350px" : "550px",
+      height: 400,
+      border: "10px solid #1976d2",
+    },
   };
+
+  useEffect(() => {
+    const handleResize = () => {
+      setIsXsScreen(window.innerWidth <= 600);
+    };
+
+    window.addEventListener("resize", handleResize);
+
+    // Clean up event listener on component unmount
+    return () => window.removeEventListener("resize", handleResize);
+  }, []);
 
   async function handleDeletePlayer(playerid) {
     console.log("This is the is " + playerid);
@@ -89,12 +107,7 @@ const PlayersDraftSettings = ({
       <Box display="flex" flexDirection="column" alignItems="center">
         <Grid item xs={12}>
           <DataGrid
-            style={{
-              backgroundColor: "white",
-              width: "100%",
-              height: 400,
-              border: "10px solid #1976d2",
-            }}
+            style={style.gridStyle}
             className="Data-grid"
             rows={rows}
             columns={columns}

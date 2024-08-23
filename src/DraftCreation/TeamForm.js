@@ -1,17 +1,31 @@
-import { useState, useContext } from "react";
+import { useState, useContext, useEffect } from "react";
 import React from "react";
 import { TextareaAutosize, Button } from "@mui/material";
 import DraftCodeContext from "../DraftCodeContext";
-
-const textAreaStyle = {
-  backgroundColor: "whiteSmoke",
-  margin: "8px",
-  borderRadius: "8px",
-  width: "500px",
-  height: "250px",
-};
+import { AlignHorizontalCenter } from "@mui/icons-material";
 
 function TeamForm({ setShowTF, setShowPF }) {
+  const [isXsScreen, setIsXsScreen] = useState(window.innerWidth <= 600);
+
+  useEffect(() => {
+    const handleResize = () => {
+      setIsXsScreen(window.innerWidth <= 600);
+    };
+
+    window.addEventListener("resize", handleResize);
+
+    // Clean up event listener on component unmount
+    return () => window.removeEventListener("resize", handleResize);
+  }, []);
+
+  const textAreaStyle = {
+    backgroundColor: "whiteSmoke",
+    margin: "8px",
+    borderRadius: "8px",
+    width: isXsScreen ? "300px" : "500px",
+    height: "250px",
+  };
+
   const [teams, setTeams] = useState([]);
   let draftOrder = [];
 
@@ -55,7 +69,10 @@ function TeamForm({ setShowTF, setShowPF }) {
       body: JSON.stringify(team),
     };
     try {
-      const responce = await fetch(`http://backend2.eba-pzytpusd.us-east-1.elasticbeanstalk.com/teams`, options);
+      const responce = await fetch(
+        `http://backend2.eba-pzytpusd.us-east-1.elasticbeanstalk.com/teams`,
+        options
+      );
       console.log(responce); // Log the response
       const data = await responce.json();
       console.log(data);

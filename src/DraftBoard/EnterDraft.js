@@ -27,12 +27,24 @@ const EnterDraft = () => {
   let [pick, setPick] = useState(0);
   let [round, setRound] = useState(1);
   const [socket, setSocket] = useState(null);
+  const [isXsScreen, setIsXsScreen] = useState(window.innerWidth <= 600);
 
   const textFieldStyle = {
     backgroundColor: "whiteSmoke",
     margin: "8px",
     borderRadius: "8px",
   };
+
+  useEffect(() => {
+    const handleResize = () => {
+      setIsXsScreen(window.innerWidth <= 600);
+    };
+
+    window.addEventListener("resize", handleResize);
+
+    // Clean up event listener on component unmount
+    return () => window.removeEventListener("resize", handleResize);
+  }, []);
 
   useEffect(() => {
     let index = 0;
@@ -435,6 +447,7 @@ const EnterDraft = () => {
                   p: 2,
                   border: "8px solid gray",
                   borderRadius: "8px",
+                  marginRight: isXsScreen ? "0px" : "20px",
                 }}
               >
                 <TeamsComponent teams={teams} draftedPlayers={draftedPlayers} />
@@ -448,6 +461,8 @@ const EnterDraft = () => {
                 p: 2,
                 border: "8px solid gray",
                 borderRadius: "8px",
+
+                marginRight: isXsScreen ? "0px" : "20px",
               }}
             >
               {" "}

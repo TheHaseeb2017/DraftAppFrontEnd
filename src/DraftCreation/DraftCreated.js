@@ -20,6 +20,33 @@ function DraftCreated({ setShowDC, setShowDF, email }) {
   const [teams, setTeams] = useState([]);
   const [teamID, setTeamID] = useState([]);
 
+  const [isXsScreen, setIsXsScreen] = useState(window.innerWidth <= 600);
+
+  const gridStyle = {
+    backgroundColor: "white",
+    width: isXsScreen ? "300px" : "500px",
+    height: 400,
+    border: "10px solid #1976d2",
+  };
+
+  const gridStyle2 = {
+    backgroundColor: "white",
+    width: isXsScreen ? "350px" : "500px",
+    height: 400,
+    border: "10px solid #1976d2",
+  };
+
+  useEffect(() => {
+    const handleResize = () => {
+      setIsXsScreen(window.innerWidth <= 600);
+    };
+
+    window.addEventListener("resize", handleResize);
+
+    // Clean up event listener on component unmount
+    return () => window.removeEventListener("resize", handleResize);
+  }, []);
+
   useEffect(() => {
     getPlayers();
     getTeams();
@@ -32,16 +59,19 @@ function DraftCreated({ setShowDC, setShowDF, email }) {
   }
 
   async function sendDraftCodeEmail() {
-    const response = await fetch("http://backend2.eba-pzytpusd.us-east-1.elasticbeanstalk.com/send-draft-code", {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify({
-        userEmail: email,
-        draftCode: draftCode,
-      }),
-    });
+    const response = await fetch(
+      "http://backend2.eba-pzytpusd.us-east-1.elasticbeanstalk.com/send-draft-code",
+      {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          userEmail: email,
+          draftCode: draftCode,
+        }),
+      }
+    );
 
     if (response.ok) {
       console.log("Email sent successfully");
@@ -147,12 +177,7 @@ function DraftCreated({ setShowDC, setShowDF, email }) {
             </h3>
             <Grid item xs={12} sm={6} md={6}>
               <DataGrid
-                style={{
-                  backgroundColor: "white",
-                  width: "100%",
-                  height: 400,
-                  border: "10px solid #1976d2",
-                }}
+                style={gridStyle2}
                 className="Data-grid"
                 rows={teamsrows}
                 columns={teamsscolumns}
@@ -174,12 +199,7 @@ function DraftCreated({ setShowDC, setShowDF, email }) {
             </h3>
             <Grid item xs={12}>
               <DataGrid
-                style={{
-                  backgroundColor: "white",
-                  width: "100%",
-                  height: 400,
-                  border: "10px solid #1976d2",
-                }}
+                style={gridStyle}
                 className="Data-grid"
                 rows={playersrows}
                 columns={playerscolumns}
