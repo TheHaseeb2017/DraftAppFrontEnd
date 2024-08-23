@@ -20,7 +20,7 @@ const EnterDraftSettingComponent = ({
   setSocket
 }) => {
   useEffect(() => {
-    const newSocket = io.connect(`http://backend.eba-mfjaqd2a.us-east-1.elasticbeanstalk.com/`);
+    const newSocket = io.connect(`http://3.221.166.89/`);
     setSocket(newSocket);
   }, []);
 
