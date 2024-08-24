@@ -20,7 +20,7 @@ const EnterDraftSettingComponent = ({
   setSocket
 }) => {
   useEffect(() => {
-    const newSocket = io.connect(`http://3.221.166.89/`);
+    const newSocket = io.connect(`http://backend.eba-mfjaqd2a.us-east-1.elasticbeanstalk.com/`);
     setSocket(newSocket);
   }, []);
 
@@ -29,7 +29,7 @@ const EnterDraftSettingComponent = ({
     console.log("This is the draft code from handle " + localDraftCode);
     socket.emit("connectToDraft", localDraftCode);
   }
-  
+
 
   return (
     <div className="App-header">
