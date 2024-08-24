@@ -18,13 +18,14 @@ const EnterDraftComponent = ({
   const [connected, setConnected] = useState(false);
 
   useEffect(() => {
-    const newSocket = io.connect(`http://backend.eba-mfjaqd2a.us-east-1.elasticbeanstalk.com/`);
+    const newSocket = io("http://backend.eba-mfjaqd2a.us-east-1.elasticbeanstalk.com/", {
+      transports: ["websocket", "polling"],
+    });
     setSocket(newSocket);
   }, []);
 
   async function handleConnect() {
-
-    const localDraftCode = await returnDraftCode(); 
+    const localDraftCode = await returnDraftCode();
     console.log("This is the draft code from handle " + localDraftCode);
     socket.emit("connectToDraft", localDraftCode);
 

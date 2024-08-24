@@ -17,10 +17,12 @@ const EnterDraftSettingComponent = ({
   getPlayersWithTeam,
   draftCode,
   socket,
-  setSocket
+  setSocket,
 }) => {
   useEffect(() => {
-    const newSocket = io.connect(`http://backend.eba-mfjaqd2a.us-east-1.elasticbeanstalk.com/`);
+    const newSocket = io("http://backend.eba-mfjaqd2a.us-east-1.elasticbeanstalk.com/", {
+      transports: ["websocket", "polling"],
+    });
     setSocket(newSocket);
   }, []);
 
@@ -29,7 +31,6 @@ const EnterDraftSettingComponent = ({
     console.log("This is the draft code from handle " + localDraftCode);
     socket.emit("connectToDraft", localDraftCode);
   }
-
 
   return (
     <div className="App-header">
@@ -44,7 +45,7 @@ const EnterDraftSettingComponent = ({
           console.log("This is the draftcode : " + draftCode);
           validateDraftCode(event);
           getPlayersWithTeam();
-          handleConnect(); 
+          handleConnect();
         }}
       >
         Submit
