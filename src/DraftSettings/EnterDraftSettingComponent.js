@@ -29,6 +29,7 @@ const EnterDraftSettingComponent = ({
     console.log("This is the draft code from handle " + localDraftCode);
     socket.emit("connectToDraft", localDraftCode);
   }
+  
 
   return (
     <div className="App-header">
