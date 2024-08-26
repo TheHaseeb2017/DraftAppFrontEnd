@@ -3,6 +3,8 @@ import DraftSettingSettingComponent from "./DraftSettingSettingComponent";
 import DraftSettingsHeader from "./DraftSettingHeader";
 import PlayerFormDraftSettings from "./PlayerFormDraftSettings";
 import PlayersDraftSettings from "./PlayersDraftSettings";
+import TeamsDraftSettings from "./TeamsDraftSettings";
+import TeamFormDraftSettings from "./TeamFormDraftSettings";
 import React, { useState, useEffect } from "react";
 import { Grid } from "@mui/material";
 import "../App.css";
@@ -17,7 +19,6 @@ const DraftSettings = () => {
   const [showDraftSettings, setShowDraftSettings] = useState(false);
   const [errorMessage, setErrorMessage] = useState("");
   const [picks, setPicks] = useState([]);
-  const [teams, setTeams] = useState([]);
   const [draftSettings, setDraftSettings] = useState([]);
   const [draftCode, setDraftCode] = useState("");
   const [draftName, setDraftName] = useState("");
@@ -25,9 +26,11 @@ const DraftSettings = () => {
   const [timer, setTimer] = useState();
   const [isactive, setIsActive] = useState();
   const [players, setPlayers] = useState([]);
+  const [teams, setTeams] = useState([]);
   const [socket, setSocket] = useState(null);
 
   useEffect(() => {
+    getTeams();
     getPlayersWithTeam();
   }, []);
 
@@ -115,6 +118,27 @@ const DraftSettings = () => {
     }
   }
 
+  async function getTeams() {
+    const options = {
+      method: "GET",
+      headers: {
+        Accept: "application/json",
+        "Content-Type": "application/json",
+      },
+    };
+    try {
+      const responce = await fetch(
+        `http://backend.eba-mfjaqd2a.us-east-1.elasticbeanstalk.com/teams/draftorder/${draftCode}`,
+        options
+      );
+      console.log(responce); // Log the response
+      const data = await responce.json();
+      setTeams(data);
+    } catch (error) {
+      console.log(error);
+    }
+  }
+
   async function deletePlayer(playerids) {
     const options = {
       method: "DELETE",
@@ -136,6 +160,27 @@ const DraftSettings = () => {
     }
   }
 
+  async function deleteTeams(teamids) {
+    const options = {
+      method: "DELETE",
+      headers: {
+        Accept: "application/json",
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({ teamids }),
+    };
+    try {
+      console.log("Here is the team ids " + teamids);
+      const responce = await fetch(
+        `http://backend.eba-mfjaqd2a.us-east-1.elasticbeanstalk.com/delete-teams`,
+        options
+      );
+      console.log(responce);
+    } catch (error) {
+      console.log(error);
+    }
+  }
+
   return (
     <div className="App-header">
       <Grid container spacing={2}>
@@ -148,6 +193,7 @@ const DraftSettings = () => {
                 errorMessage={errorMessage}
                 textFieldStyle={textFieldStyle}
                 getPlayersWithTeam={getPlayersWithTeam}
+                getTeams={getTeams}
                 draftCode={draftCode}
                 socket={socket}
                 setSocket={setSocket}
@@ -164,6 +210,18 @@ const DraftSettings = () => {
 
         <Grid item xs={12} sm={4} md={4}>
           {showDraftSettings && (
+            <PlayerFormDraftSettings
+              draftCode={draftCode}
+              getPlayersWithTeam={getPlayersWithTeam}
+            />
+          )}
+
+          {showDraftSettings && (
+            <TeamFormDraftSettings draftCode={draftCode} getTeams={getTeams} />
+          )}
+        </Grid>
+        <Grid item xs={12} sm={4} md={4}>
+          {showDraftSettings && (
             <DraftSettingSettingComponent
               draftSettings={draftSettings}
               textFieldStyle={textFieldStyle}
@@ -178,14 +236,7 @@ const DraftSettings = () => {
               updateDraft={updateDraft}
               socket={socket}
               setSocket={setSocket}
-            />
-          )}
-        </Grid>
-        <Grid item xs={12} sm={4} md={4}>
-          {showDraftSettings && (
-            <PlayerFormDraftSettings
-              draftCode={draftCode}
-              getPlayersWithTeam={getPlayersWithTeam}
+              getTeams={getTeams}
             />
           )}
         </Grid>
@@ -195,6 +246,14 @@ const DraftSettings = () => {
               players={players}
               deletePlayer={deletePlayer}
               getPlayersWithTeam={getPlayersWithTeam}
+            />
+          )}
+
+          {showDraftSettings && (
+            <TeamsDraftSettings
+              teams={teams}
+              deleteTeams={deleteTeams}
+              getTeams={getTeams}
             />
           )}
         </Grid>

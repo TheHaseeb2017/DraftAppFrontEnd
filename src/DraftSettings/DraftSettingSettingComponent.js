@@ -15,6 +15,7 @@ const DraftSettingSettingComponent = ({
   updateDraft,
   socket,
   setSocket,
+  getTeams
 }) => {
   const style = {
     table: {
@@ -78,6 +79,7 @@ const DraftSettingSettingComponent = ({
         style={style.button}
         onClick={async (event) => {
           await updateDraft();
+          await getTeams(); 
           socket.emit("updateDraft");
         }}
       >

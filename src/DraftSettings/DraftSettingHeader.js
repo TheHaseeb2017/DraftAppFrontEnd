@@ -7,16 +7,14 @@ const DraftSettingsHeader = ({ draftName }) => {
       color: "#CC5500",
       textShadow:
         "1px 1px 0 black, -1px -1px 0 black, 1px -1px 0 black, -1px 1px 0 black",
+      marginTop: "120px",
+      marginBottom: "40px",
     },
-    marginTop: "0px", 
-    marginBottom: "120px"
   };
 
   return (
-    <div className="Center-element">
-      <h2 style={style.textField}>
-        {draftName} Settings
-      </h2>
+    <div className="App-comp">
+      <h2 style={style.textField}>{draftName} Settings</h2>
     </div>
   );
 };

@@ -15,6 +15,7 @@ const EnterDraftSettingComponent = ({
   errorMessage,
   textFieldStyle,
   getPlayersWithTeam,
+  getTeams, 
   draftCode,
   socket,
   setSocket,
@@ -44,6 +45,7 @@ const EnterDraftSettingComponent = ({
         onClick={(event) => {
           console.log("This is the draftcode : " + draftCode);
           validateDraftCode(event);
+          getTeams(); 
           getPlayersWithTeam();
           handleConnect();
         }}

@@ -6,6 +6,9 @@ import { AlignHorizontalCenter } from "@mui/icons-material";
 
 function TeamForm({ setShowTF, setShowPF }) {
   const [isXsScreen, setIsXsScreen] = useState(window.innerWidth <= 600);
+  const [teams, setTeams] = useState([]);
+  let draftOrder = [];
+
 
   useEffect(() => {
     const handleResize = () => {
@@ -26,8 +29,6 @@ function TeamForm({ setShowTF, setShowPF }) {
     height: "250px",
   };
 
-  const [teams, setTeams] = useState([]);
-  let draftOrder = [];
 
   const { draftCode } = useContext(DraftCodeContext);
 
