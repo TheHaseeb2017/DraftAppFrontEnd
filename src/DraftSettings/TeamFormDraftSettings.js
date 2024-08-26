@@ -48,26 +48,27 @@ function TeamFormDraftSettings({ draftCode, getTeams }) {
 
   const handleTeamSubmit = async () => {
     const lines = teams.split("\n");
-  
-    let number = await getMaxDraftOrder() + 1;
-  
+
+    let number = (await getMaxDraftOrder()) + 1;
+
     console.log("This is the number " + number);
-  
+
     lines.forEach((line) => {
       draftOrder.push(number);
       number++;
     });
-  
+
     draftOrder = [...draftOrder].sort(() => Math.random() - 0.5);
-  
-    await Promise.all(lines.map(async (line) => {
-      await createTeam(line);
-    }));
-  
+
+    await Promise.all(
+      lines.map(async (line) => {
+        await createTeam(line);
+      })
+    );
+
     setTeams("");
     await getTeams();
   };
-  
 
   async function createTeam(teamItem) {
     const team = {
@@ -85,7 +86,10 @@ function TeamFormDraftSettings({ draftCode, getTeams }) {
       body: JSON.stringify(team),
     };
     try {
-      const responce = await fetch(`http://backend.eba-mfjaqd2a.us-east-1.elasticbeanstalk.com/teams`, options);
+      const responce = await fetch(
+        `http://backend.eba-mfjaqd2a.us-east-1.elasticbeanstalk.com/teams`,
+        options
+      );
       console.log(responce); // Log the response
       const data = await responce.json();
 
@@ -105,22 +109,30 @@ function TeamFormDraftSettings({ draftCode, getTeams }) {
         "Content-Type": "application/json",
       },
     };
+
     try {
-      const responce = await fetch(
+      const response = await fetch(
         `http://backend.eba-mfjaqd2a.us-east-1.elasticbeanstalk.com/teams/draftorder/${draftCode}`,
         options
       );
-      console.log("Team response " + responce); // Log the response
-      const data = await responce.json();
-      const index = data.length - 1;
 
+      console.log("Team response ", response); // Log the response object
+      const data = await response.json();
+
+      if (data.length === 0) {
+        console.log("No teams found in the draft");
+        return max;
+      }
+
+      const index = data.length - 1;
       max = data[index].draftorder;
 
-      console.log("Here is max " + max);
-
+      console.log("Here is max ", max);
       return max;
     } catch (error) {
+      console.log("Hitting the catch ");
       console.log(error);
+      return max; // Return 0 in case of an error
     }
   }
 
